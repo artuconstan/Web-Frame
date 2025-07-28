@@ -1,0 +1,322 @@
+/* Estilos para PanelEstudiante.jsx (Mi Perfil) */
+
+.panel-estudiante-container {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 120px); /* Ajusta según el header y footer */
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.panel-header {
+  background:  white;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.panel-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.panel-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.panel-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr; /* Columna izquierda más ancha */
+  gap: 2rem;
+}
+
+.content-left,
+.content-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-section {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.info-grid,
+.practica-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas para los ítems de información */
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item label {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.info-item span,
+.info-item input.form-control {
+  font-size: 1rem;
+  color: #333;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.info-item input.form-control {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0.5rem 0.8rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.info-item input.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Actividades Recientes en PanelEstudiante */
+.actividades-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.actividad-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #eee;
+  justify-content: space-between;
+}
+
+.actividad-fecha {
+  font-size: 0.9rem;
+  color: #777;
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+
+.actividad-content {
+  flex-grow: 1;
+}
+
+.actividad-content h4 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  color: #333;
+}
+
+.actividad-content p {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.actividad-horas {
+  font-size: 0.85rem;
+  color: #555;
+  margin-left: 0.5rem;
+}
+
+.actividad-estado {
+  padding: 0.3rem 0.7rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+
+.estado-aprobada {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.estado-pendiente {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* Progreso de Horas en PanelEstudiante */
+.progreso-horas {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.progreso-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.progreso-header h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+}
+
+.progreso-porcentaje {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.progreso-bar {
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  height: 10px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progreso-fill {
+  height: 100%;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: width 0.5s ease-in-out;
+}
+
+.progreso-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Botones generales */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+.btn-outline:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-outline:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loading spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 992px) {
+  .panel-content {
+    grid-template-columns: 1fr; /* Una columna en tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .panel-estudiante-container {
+    padding: 1rem;
+  }
+
+  .panel-header {
+    padding: 1.5rem;
+  }
+
+  .panel-header h1 {
+    font-size: 2rem;
+  }
+
+  .info-grid,
+  .practica-grid {
+    grid-template-columns: 1fr; /* Una columna en móvil */
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .actividad-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .actividad-fecha {
+    margin-right: 0;
+    width: 100%;
+    text-align: left;
+  }
+}

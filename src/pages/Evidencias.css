@@ -1,0 +1,325 @@
+/* General styles for the container */
+.evidencias-container {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 60px); /* Adjust based on header/footer height */
+}
+
+/* Header section */
+.evidencias-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.evidencias-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.evidencias-header p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  line-height: 1.5;
+}
+
+/* Main content layout */
+.evidencias-content {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column by default */
+  gap: 30px;
+}
+
+@media (min-width: 992px) {
+  .evidencias-content {
+    grid-template-columns: 1fr 2fr; /* Two columns on larger screens */
+  }
+}
+
+/* Card styles for sections */
+.section-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.section-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.section-title {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.section-title svg {
+  color: #3498db; /* Icon color */
+  font-size: 1.8rem;
+}
+
+/* Upload Section */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus,
+.form-group input[type="file"]:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  outline: none;
+}
+
+.form-group input[type="file"] {
+  padding: 10px; /* Adjust padding for file input */
+}
+
+.file-info {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.btn-upload {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  margin-top: 15px;
+}
+
+.btn-upload:hover {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+.btn-upload:active {
+  transform: translateY(0);
+}
+
+/* Evidencias List Section */
+.filters-and-search {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+@media (min-width: 768px) {
+  .filters-and-search {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.search-bar {
+  position: relative;
+  flex-grow: 1;
+  max-width: 350px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 10px 10px 40px; /* Left padding for icon */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.search-bar svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f8c8d;
+}
+
+.filter-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-status label {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.filter-status select {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.empty-state-text {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  padding: 50px 0;
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.evidencias-table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.evidencias-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px; /* Ensure table doesn't get too small on mobile */
+}
+
+.evidencias-table th,
+.evidencias-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.evidencias-table th {
+  background-color: #f0f2f5;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.evidencias-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: white;
+}
+
+.status-badge.aprobado {
+  background-color: #2ecc71; /* Green */
+}
+
+.status-badge.pendiente {
+  background-color: #f39c12; /* Orange */
+}
+
+.status-badge.rechazado {
+  background-color: #e74c3c; /* Red */
+}
+
+.btn-action-download {
+  background-color: #3498db;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-action-download:hover {
+  background-color: #2980b9;
+}
+
+.btn-action-download svg {
+  margin: 0; /* Remove default margin from Lucide icons */
+}
+
+/* Loading Spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh; /* Occupy most of the viewport height */
+  color: #555;
+  font-size: 1.2rem;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
