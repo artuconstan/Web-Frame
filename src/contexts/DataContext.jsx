@@ -1,351 +1,453 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, useCallback } from "react"
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react"
 
 const DataContext = createContext(null)
 
 export const DataProvider = ({ children }) => {
-  const [estudiantes, setEstudiantes] = useState(() => {
-    // Cargar datos iniciales desde localStorage o un mock
-    const savedEstudiantes = localStorage.getItem("estudiantes")
-    return savedEstudiantes
-      ? JSON.parse(savedEstudiantes)
-      : [
-          {
-            id: "est1",
-            email: "estudiante@example.com",
-            password: "password",
-            rol: "estudiante",
-            nombre: "Estudiante Demo",
-            carrera: "Ingeniería en Software",
-            institucion: "Universidad XYZ",
-            progresoGeneral: 33,
-            horasCompletadas: 156,
-            horasRequeridas: 480,
-            evidenciasSubidas: 8,
-            evidenciasAprobadas: 6,
-            calificacionPromedio: 17.5,
-            actividadesRecientes: [
-              {
-                id: "act1",
-                descripcion: "Subida de evidencia de informe mensual",
-                fecha: "2024-07-20",
-                estado: "completado",
-              },
-              {
-                id: "act2",
-                descripcion: "Revisión de progreso con coordinador",
-                fecha: "2024-07-15",
-                estado: "completado",
-              },
-              {
-                id: "act3",
-                descripcion: "Inicio de proyecto final de práctica",
-                fecha: "2024-07-01",
-                estado: "completado",
-              },
-            ],
-            proximasActividades: [
-              {
-                id: "prox1",
-                descripcion: "Entrega de informe final",
-                fecha: "2024-08-30",
-                estado: "pendiente",
-              },
-              {
-                id: "prox2",
-                descripcion: "Presentación de proyecto",
-                fecha: "2024-09-10",
-                estado: "pendiente",
-              },
-            ],
-            notificaciones: [
-              {
-                id: "notif1",
-                mensaje: "Tu evidencia 'Informe Semanal 3' ha sido aprobada.",
-                fecha: "2024-07-22",
-                tipo: "aprobacion",
-                leida: false,
-              },
-              {
-                id: "notif2",
-                mensaje: "Recordatorio: Entrega de informe mensual pendiente.",
-                fecha: "2024-07-25",
-                tipo: "recordatorio",
-                leida: false,
-              },
-              {
-                id: "notif3",
-                mensaje: "Nueva actividad asignada: Preparar presentación final.",
-                fecha: "2024-07-18",
-                tipo: "info",
-                leida: true,
-              },
-            ],
-            // Datos para Mi Panel
-            informacionPersonal: {
-              cedula: "1234567890",
-              fechaNacimiento: "2000-01-15",
-              telefono: "0987654321",
-              direccion: "Av. Principal 123, Ciudad",
-            },
-            informacionAcademica: {
-              nivel: "Pregrado",
-              semestre: "8vo",
-              fechaInicioPractica: "2024-03-01",
-              fechaFinPractica: "2024-08-30",
-            },
-            informacionEmpresa: {
-              nombreEmpresa: "Tech Solutions S.A.",
-              ruc: "1792123456001",
-              direccionEmpresa: "Calle Ficticia 456, Ciudad",
-              telefonoEmpresa: "022555666",
-              nombreContacto: "Ing. Ana García",
-              cargoContacto: "Gerente de Proyectos",
-              emailContacto: "ana.garcia@techsolutions.com",
-            },
-            documentos: [
-              { id: "doc1", nombre: "Carta de Compromiso", url: "#", fechaSubida: "2024-03-05" },
-              { id: "doc2", nombre: "Convenio de Prácticas", url: "#", fechaSubida: "2024-03-10" },
-            ],
-            notas: [
-              {
-                id: "nota1",
-                titulo: "Reunión con tutor",
-                contenido: "Discutir avances del proyecto.",
-                fecha: "2024-07-20",
-              },
-            ],
-            evidencias: [
-              // Añadimos datos de evidencias de ejemplo aquí
-              {
-                id: "e1",
-                nombre: "Informe de Avance - Semana 1",
-                tipo: "informe",
-                fechaSubida: "2024-07-01",
-                estado: "aprobado",
-                comentarios: "Excelente detalle en el progreso.",
-                url: "#",
-              },
-              {
-                id: "e2",
-                nombre: "Bitácora Semanal - Julio 1",
-                tipo: "informe",
-                fechaSubida: "2024-07-08",
-                estado: "pendiente",
-                comentarios: "",
-                url: "#",
-              },
-              {
-                id: "e3",
-                nombre: "Presentación de Proyecto - Fase Inicial",
-                tipo: "presentacion",
-                fechaSubida: "2024-07-15",
-                estado: "rechazado",
-                comentarios: "Falta incluir el cronograma actualizado.",
-                url: "#",
-              },
-            ],
-          },
-          {
-            id: "est2",
-            email: "otroestudiante@example.com",
-            nombre: "Otro Estudiante",
-            carrera: "Diseño Gráfico",
-            institucion: "Instituto Creativo",
-            progresoGeneral: 50,
-            horasCompletadas: 240,
-            horasRequeridas: 480,
-            evidenciasSubidas: 10,
-            evidenciasAprobadas: 8,
-            calificacionPromedio: 18.0,
-            actividadesRecientes: [],
-            proximasActividades: [],
-            notificaciones: [],
-            informacionPersonal: {
-              cedula: "0987654321",
-              fechaNacimiento: "1999-05-20",
-              telefono: "0912345678",
-              direccion: "Av. Secundaria 789, Pueblo",
-            },
-            informacionAcademica: {
-              nivel: "Pregrado",
-              semestre: "7mo",
-              fechaInicioPractica: "2024-02-15",
-              fechaFinPractica: "2024-07-15",
-            },
-            informacionEmpresa: {
-              nombreEmpresa: "Creative Studio",
-              ruc: "0987654321001",
-              direccionEmpresa: "Calle del Arte 10, Pueblo",
-              telefonoEmpresa: "042111222",
-              nombreContacto: "Sra. Laura Pérez",
-              cargoContacto: "Directora de Arte",
-              emailContacto: "laura.perez@creativestudio.com",
-            },
-            documentos: [],
-            notas: [],
-            evidencias: [], // Aseguramos que también tenga un array de evidencias
-          },
-        ]
-  })
+  // Initialize state from localStorage or with default data for each key
+  const [data, setData] = useState(() => {
+    if (typeof window !== "undefined") {
+      const savedStudents = localStorage.getItem("estudiantes")
+      const savedCoordinadores = localStorage.getItem("coordinadores")
+      const savedEmpresas = localStorage.getItem("empresas")
+      const savedUser = localStorage.getItem("user") // Assuming 'user' might also be stored separately
 
-  const [coordinadores, setCoordinadores] = useState(() => {
-    const savedCoordinadores = localStorage.getItem("coordinadores")
-    return savedCoordinadores
-      ? JSON.parse(savedCoordinadores)
-      : [
-          {
-            id: "coord1",
-            email: "coordinador@example.com",
-            password: "password",
-            rol: "coordinador",
-            nombre: "Dr. Carlos Ruiz",
-            departamento: "Vinculación con la Sociedad",
-          },
-        ]
-  })
-
-  const [empresas, setEmpresas] = useState(() => {
-    const savedEmpresas = localStorage.getItem("empresas")
-    return savedEmpresas
-      ? JSON.parse(savedEmpresas)
-      : [
-          {
-            id: "emp1",
-            nombre: "Innovatech",
-            ruc: "1790000000001",
-            direccion: "Calle Falsa 123",
-            contacto: "Maria Lopez",
+      // Default data if not found in localStorage
+      const defaultStudents = [
+        {
+          id: 1,
+          email: "estudiante@example.com",
+          password: "password",
+          userType: "estudiante",
+          nombre: "Ana María González",
+          carrera: "Ingeniería en Software",
+          institucion: "Universidad XYZ",
+          estado: "activo", // activo, retrasado, completado
+          empresa: "Tech Solutions Inc.",
+          supervisor: "Juan Pérez",
+          progresoGeneral: 33,
+          horasCompletadas: 156,
+          horasRequeridas: 480,
+          evidenciasSubidas: 8,
+          evidenciasAprobadas: 6,
+          calificacion: 17.5,
+          actividadesRecientes: [
+            {
+              id: 1,
+              descripcion: "Desarrollo de módulo de autenticación",
+              fecha: "2024-07-20",
+              estado: "completado",
+            },
+            {
+              id: 2,
+              descripcion: "Reunión de planificación de sprint",
+              fecha: "2024-07-18",
+              estado: "completado",
+            },
+            {
+              id: 3,
+              descripcion: "Investigación de nuevas tecnologías",
+              fecha: "2024-07-15",
+              estado: "pendiente",
+            },
+          ],
+          proximasActividades: [
+            { id: 4, descripcion: "Presentación de avance de proyecto", fecha: "2024-08-01" },
+            { id: 5, descripcion: "Revisión de código con el equipo", fecha: "2024-07-29" },
+          ],
+          notificaciones: [
+            { id: 1, mensaje: "Nueva evidencia aprobada: 'Diseño UI/UX'", leida: false },
+            { id: 2, mensaje: "Recordatorio: Reporte semanal pendiente", leida: false },
+            { id: 3, mensaje: "Tu práctica ha alcanzado el 30% de progreso", leida: true },
+          ],
+          evidencias: [
+            {
+              id: 1,
+              titulo: "Diseño de Base de Datos",
+              descripcion: "Diseño completo de la base de datos del proyecto",
+              tipo: "documento",
+              archivo: "diseno_bd.pdf",
+              fechaSubida: "2024-07-10",
+              estado: "aprobada",
+              comentarios: "Excelente trabajo en la normalización.",
+              url: "/placeholder.pdf?query=diseno_bd", // Placeholder URL
+            },
+            {
+              id: 2,
+              titulo: "Implementación de API REST",
+              descripcion: "Desarrollo de endpoints para la API",
+              tipo: "documento",
+              archivo: "api_rest.zip",
+              fechaSubida: "2024-07-15",
+              estado: "pendiente",
+              comentarios: "",
+              url: "/placeholder.zip?query=api_rest", // Placeholder URL
+            },
+            {
+              id: 3,
+              titulo: "Pruebas Unitarias",
+              descripcion: "Suite de pruebas para los módulos principales",
+              tipo: "documento",
+              archivo: "pruebas_unitarias.zip",
+              fechaSubida: "2024-07-20",
+              estado: "rechazada",
+              comentarios: "Necesita más cobertura de casos de borde.",
+              url: "/placeholder.zip?query=pruebas_unitarias", // Placeholder URL
+            },
+          ],
+          reportes: [
+            {
+              id: 1,
+              titulo: "Reporte Semanal - Semana 1",
+              tipo: "semanal",
+              periodo: "01/07/2024 - 07/07/2024",
+              fechaGeneracion: "2024-07-07",
+              horasRegistradas: 40,
+              actividades: 5,
+              estado: "aprobado",
+              comentarios: "Buen resumen, sigue así.",
+              url: "/placeholder.pdf?query=reporte_semanal_1", // Placeholder URL
+            },
+            {
+              id: 2,
+              titulo: "Reporte Semanal - Semana 2",
+              tipo: "semanal",
+              periodo: "08/07/2024 - 14/07/2024",
+              fechaGeneracion: "2024-07-14",
+              horasRegistradas: 38,
+              actividades: 4,
+              estado: "pendiente",
+              comentarios: "",
+              url: "/placeholder.pdf?query=reporte_semanal_2", // Placeholder URL
+            },
+          ],
+          empresaInfo: {
+            nombre: "Tech Solutions Inc.",
+            ruc: "1234567890001",
+            direccion: "Av. Principal 123",
             telefono: "0987654321",
-            email: "info@innovatech.com",
+            contacto: "Juan Pérez",
+            cargoContacto: "Gerente de Proyectos",
+            emailContacto: "juan.perez@techsolutions.com",
           },
-        ]
+        },
+        {
+          id: 2,
+          email: "carlos.rodriguez@example.com",
+          password: "password",
+          userType: "estudiante",
+          nombre: "Carlos Rodríguez",
+          carrera: "Marketing Digital",
+          institucion: "Universidad ABC",
+          estado: "retrasado",
+          empresa: "Innovate Marketing Corp",
+          supervisor: "María López",
+          progresoGeneral: 25,
+          horasCompletadas: 120,
+          horasRequeridas: 480,
+          evidenciasSubidas: 5,
+          evidenciasAprobadas: 3,
+          calificacion: 16.0,
+          actividadesRecientes: [],
+          proximasActividades: [],
+          notificaciones: [],
+          evidencias: [
+            {
+              id: 4,
+              titulo: "Análisis de Mercado",
+              descripcion: "Estudio de mercado para campaña digital",
+              tipo: "presentacion",
+              archivo: "analisis_mercado.pptx",
+              fechaSubida: "2024-07-01",
+              estado: "aprobada",
+              comentarios: "Muy detallado y bien estructurado.",
+              url: "/placeholder.pptx?query=analisis_mercado", // Placeholder URL
+            },
+            {
+              id: 5,
+              titulo: "Propuesta de Campaña",
+              descripcion: "Propuesta completa para campaña en redes sociales",
+              tipo: "documento",
+              archivo: "propuesta_campana.pdf",
+              fechaSubida: "2024-07-08",
+              estado: "pendiente",
+              comentarios: "",
+              url: "/placeholder.pdf?query=propuesta_campana", // Placeholder URL
+            },
+          ],
+          reportes: [
+            {
+              id: 3,
+              titulo: "Reporte Mensual - Julio",
+              tipo: "mensual",
+              periodo: "01/07/2024 - 31/07/2024",
+              fechaGeneracion: "2024-07-31",
+              horasRegistradas: 120,
+              actividades: 8,
+              estado: "pendiente",
+              comentarios: "",
+              url: "/placeholder.pdf?query=reporte_mensual_julio", // Placeholder URL
+            },
+          ],
+          empresaInfo: {
+            nombre: "Innovate Marketing Corp",
+            ruc: "0987654321001",
+            direccion: "Calle Comercial 456",
+            telefono: "0912345678",
+            contacto: "María López",
+            cargoContacto: "Directora de Marketing",
+            emailContacto: "maria.lopez@innovatemarketing.com",
+          },
+        },
+      ]
+
+      const defaultCoordinadores = [
+        {
+          id: 3,
+          email: "coordinador@example.com",
+          password: "password",
+          userType: "coordinador",
+          nombre: "Coordinador General",
+        },
+      ]
+
+      const defaultEmpresas = [] // Assuming no default companies are needed for now
+
+      return {
+        students: savedStudents ? JSON.parse(savedStudents) : defaultStudents,
+        coordinadores: savedCoordinadores ? JSON.parse(savedCoordinadores) : defaultCoordinadores,
+        empresas: savedEmpresas ? JSON.parse(savedEmpresas) : defaultEmpresas,
+        user: savedUser ? JSON.parse(savedUser) : null, // 'user' might be null if not logged in
+      }
+    }
+    return { students: [], coordinadores: [], empresas: [], user: null } // Default empty if not in browser
   })
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
 
+  // Save data to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem("estudiantes", JSON.stringify(estudiantes))
-  }, [estudiantes])
+    if (typeof window !== "undefined") {
+      localStorage.setItem("estudiantes", JSON.stringify(data.students))
+      localStorage.setItem("coordinadores", JSON.stringify(data.coordinadores))
+      localStorage.setItem("empresas", JSON.stringify(data.empresas))
+      if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user))
+      } else {
+        localStorage.removeItem("user") // Clear user if logged out
+      }
+    }
+  }, [data])
 
-  useEffect(() => {
-    localStorage.setItem("coordinadores", JSON.stringify(coordinadores))
-  }, [coordinadores])
-
-  useEffect(() => {
-    localStorage.setItem("empresas", JSON.stringify(empresas))
-  }, [empresas])
-
+  // --- Student Data Management ---
   const obtenerEstudiante = useCallback(
     (email) => {
-      setIsLoading(true)
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const estudiante = estudiantes.find((est) => est.email === email)
-          setIsLoading(false)
-          resolve(estudiante)
-        }, 500)
-      })
+      return data.students.find((s) => s.email === email && s.userType === "estudiante")
     },
-    [estudiantes],
+    [data.students],
   )
-
-  const obtenerTodosEstudiantes = useCallback(() => {
-    setIsLoading(true)
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        setIsLoading(false)
-        resolve(estudiantes)
-      }, 500)
-    })
-  }, [estudiantes])
-
-  const obtenerCoordinador = useCallback(
-    (email) => {
-      setIsLoading(true)
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const coordinador = coordinadores.find((coord) => coord.email === email)
-          setIsLoading(false)
-          resolve(coordinador)
-        }, 500)
-      })
-    },
-    [coordinadores],
-  )
-
-  const registrarEmpresa = useCallback((estudianteEmail, empresaData) => {
-    setEstudiantes((prevEstudiantes) =>
-      prevEstudiantes.map((est) =>
-        est.email === estudianteEmail ? { ...est, empresaRegistrada: { ...empresaData, estado: "pendiente" } } : est,
-      ),
-    )
-  }, [])
-
-  const actualizarEstadoEmpresa = useCallback((estudianteEmail, nuevoEstado) => {
-    setEstudiantes((prevEstudiantes) =>
-      prevEstudiantes.map((est) =>
-        est.email === estudianteEmail
-          ? { ...est, empresaRegistrada: { ...est.empresaRegistrada, estado: nuevoEstado } }
-          : est,
-      ),
-    )
-  }, [])
 
   const actualizarEstudiante = useCallback((email, newData) => {
-    setEstudiantes((prevEstudiantes) =>
-      prevEstudiantes.map((est) =>
-        est.email === email
-          ? {
-              ...est,
-              ...newData,
-              informacionPersonal: { ...est.informacionPersonal, ...newData.informacionPersonal },
-              informacionAcademica: { ...est.informacionAcademica, ...newData.informacionAcademica },
-              informacionEmpresa: { ...est.informacionEmpresa, ...newData.informacionEmpresa },
-              // Manejo específico para arrays que deben ser fusionados o sobrescritos
-              documentos: newData.documentos !== undefined ? newData.documentos : est.documentos,
-              notas: newData.notas !== undefined ? newData.notas : est.notas,
-              evidencias: newData.evidencias !== undefined ? newData.evidencias : est.evidencias,
-              actividadesRecientes:
-                newData.actividadesRecientes !== undefined ? newData.actividadesRecientes : est.actividadesRecientes,
-              proximasActividades:
-                newData.proximasActividades !== undefined ? newData.proximasActividades : est.proximasActividades,
-              notificaciones: newData.notificaciones !== undefined ? newData.notificaciones : est.notificaciones,
-            }
-          : est,
+    setData((prevData) => ({
+      ...prevData,
+      students: prevData.students.map((s) =>
+        s.email === email && s.userType === "estudiante" ? { ...s, ...newData } : s,
       ),
-    )
+    }))
   }, [])
 
-  const marcarNotificacionLeida = useCallback((email, notificationId) => {
-    setEstudiantes((prevEstudiantes) =>
-      prevEstudiantes.map((est) =>
-        est.email === email
-          ? {
-              ...est,
-              notificaciones: est.notificaciones.map((notif) =>
-                notif.id === notificationId ? { ...notif, leida: true } : notif,
-              ),
-            }
-          : est,
-      ),
-    )
+  const agregarEvidencia = useCallback((studentEmail, newEvidencia) => {
+    setData((prevData) => ({
+      ...prevData,
+      students: prevData.students.map((s) => {
+        if (s.email === studentEmail && s.userType === "estudiante") {
+          const evidenciaConId = {
+            id: Date.now(),
+            fechaSubida: new Date().toISOString().split("T")[0],
+            estado: "pendiente",
+            comentarios: "",
+            ...newEvidencia,
+          }
+          return {
+            ...s,
+            evidencias: [evidenciaConId, ...(s.evidencias || [])],
+            evidenciasSubidas: (s.evidenciasSubidas || 0) + 1,
+            notificaciones: [
+              { id: Date.now() + 1, mensaje: `Nueva evidencia subida: '${newEvidencia.titulo}'`, leida: false },
+              ...(s.notificaciones || []),
+            ],
+          }
+        }
+        return s
+      }),
+    }))
+    return true
   }, [])
 
-  const value = {
-    estudiantes,
-    coordinadores,
-    empresas,
-    isLoading,
-    obtenerEstudiante,
-    obtenerTodosEstudiantes,
-    obtenerCoordinador,
-    registrarEmpresa,
-    actualizarEstadoEmpresa,
-    actualizarEstudiante, // <-- Aseguramos que esté disponible
-    marcarNotificacionLeida,
-  }
+  const actualizarEstadoEvidencia = useCallback((estudianteId, evidenciaId, nuevoEstado, comentarios) => {
+    setData((prevData) => ({
+      ...prevData,
+      students: prevData.students.map((s) => {
+        if (s.id === estudianteId && s.userType === "estudiante") {
+          return {
+            ...s,
+            evidencias: s.evidencias.map((e) =>
+              e.id === evidenciaId ? { ...e, estado: nuevoEstado, comentarios: comentarios } : e,
+            ),
+            evidenciasAprobadas: nuevoEstado === "aprobada" ? (s.evidenciasAprobadas || 0) + 1 : s.evidenciasAprobadas,
+            notificaciones: [
+              {
+                id: Date.now(),
+                mensaje: `Tu evidencia '${s.evidencias.find((e) => e.id === evidenciaId)?.titulo}' ha sido ${nuevoEstado}.`,
+                leida: false,
+              },
+              ...(s.notificaciones || []),
+            ],
+          }
+        }
+        return s
+      }),
+    }))
+  }, [])
+
+  const agregarReporte = useCallback((studentEmail, newReporte) => {
+    setData((prevData) => ({
+      ...prevData,
+      students: prevData.students.map((s) => {
+        if (s.email === studentEmail && s.userType === "estudiante") {
+          const reporteConId = {
+            id: Date.now(),
+            fechaGeneracion: new Date().toISOString().split("T")[0],
+            estado: "pendiente",
+            comentarios: "",
+            ...newReporte,
+          }
+          return {
+            ...s,
+            reportes: [reporteConId, ...(s.reportes || [])],
+            notificaciones: [
+              { id: Date.now() + 1, mensaje: `Nuevo reporte generado: '${newReporte.titulo}'`, leida: false },
+              ...(s.notificaciones || []),
+            ],
+          }
+        }
+        return s
+      }),
+    }))
+    return true
+  }, [])
+
+  const actualizarEstadoReporte = useCallback((estudianteId, reporteId, nuevoEstado, comentarios) => {
+    setData((prevData) => ({
+      ...prevData,
+      students: prevData.students.map((s) => {
+        if (s.id === estudianteId && s.userType === "estudiante") {
+          return {
+            ...s,
+            reportes: s.reportes.map((r) =>
+              r.id === reporteId ? { ...r, estado: nuevoEstado, comentarios: comentarios } : r,
+            ),
+            notificaciones: [
+              {
+                id: Date.now(),
+                mensaje: `Tu reporte '${s.reportes.find((r) => r.id === reporteId)?.titulo}' ha sido ${nuevoEstado}.`,
+                leida: false,
+              },
+              ...(s.notificaciones || []),
+            ],
+          }
+        }
+        return s
+      }),
+    }))
+  }, [])
+
+  const marcarNotificacionLeida = useCallback((studentEmail, notificacionId) => {
+    setData((prevData) => ({
+      ...prevData,
+      students: prevData.students.map((s) => {
+        if (s.email === studentEmail && s.userType === "estudiante") {
+          return {
+            ...s,
+            notificaciones: s.notificaciones.map((n) => (n.id === notificacionId ? { ...n, leida: true } : n)),
+          }
+        }
+        return s
+      }),
+    }))
+  }, [])
+
+  // --- Coordinator Data Management ---
+  const obtenerTodosLosEstudiantes = useCallback(() => {
+    return data.students.filter((s) => s.userType === "estudiante")
+  }, [data.students])
+
+  const obtenerEvidenciasPendientes = useCallback(() => {
+    const allStudents = obtenerTodosLosEstudiantes()
+    return allStudents.flatMap((student) =>
+      (student.evidencias || [])
+        .filter((e) => e.estado === "pendiente")
+        .map((e) => ({ ...e, studentEmail: student.email, studentName: student.nombre, studentId: student.id })),
+    )
+  }, [obtenerTodosLosEstudiantes])
+
+  const obtenerReportesPendientes = useCallback(() => {
+    const allStudents = obtenerTodosLosEstudiantes()
+    return allStudents.flatMap((student) =>
+      (student.reportes || [])
+        .filter((r) => r.estado === "pendiente")
+        .map((r) => ({ ...r, studentEmail: student.email, studentName: student.nombre, studentId: student.id })),
+    )
+  }, [obtenerTodosLosEstudiantes])
+
+  // Function to update the 'user' state in DataContext
+  const setUserData = useCallback((userData) => {
+    setData((prevData) => ({
+      ...prevData,
+      user: userData,
+    }))
+  }, [])
+
+  const value = React.useMemo(
+    () => ({
+      // Datos compatibles con GestionEstudiantes
+      estudiantes: data.students.filter((s) => s.userType === "estudiante"),
+      loading,
+
+      // Funciones originales
+      data, // Keep data for internal use if needed
+      setData, // Keep setData for internal use if needed
+      obtenerEstudiante,
+      actualizarEstudiante,
+      agregarEvidencia,
+      actualizarEstadoEvidencia,
+      agregarReporte,
+      actualizarEstadoReporte,
+      marcarNotificacionLeida,
+      obtenerTodosLosEstudiantes,
+      obtenerEvidenciasPendientes,
+      obtenerReportesPendientes,
+      // Expose user and setUserData for AuthContext
+      user: data.user,
+      setUserData,
+    }),
+    [
+      data,
+      loading,
+      obtenerEstudiante,
+      actualizarEstudiante,
+      agregarEvidencia,
+      actualizarEstadoEvidencia,
+      agregarReporte,
+      actualizarEstadoReporte,
+      marcarNotificacionLeida,
+      obtenerTodosLosEstudiantes,
+      obtenerEvidenciasPendientes,
+      obtenerReportesPendientes,
+      setUserData,
+    ],
+  )
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>
 }
