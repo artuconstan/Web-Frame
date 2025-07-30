@@ -154,7 +154,7 @@ const EstudianteDashboard = () => {
     <div className="estudiante-dashboard">
       {/* Encabezado de bienvenida */}
       <div className="dashboard-header">
-        <h1>¡Bienvenido, Mateo!</h1>
+        <h1>¡Bienvenida, Ana !</h1>
         <p>Aquí tienes un resumen de tu práctica profesional</p>
       </div>
 
