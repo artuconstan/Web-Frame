@@ -17,10 +17,10 @@ import "./App.css"
 
 function App() {
   return (
-    // Proveedor de contexto de autenticación para toda la app
-    <AuthProvider>
-      {/* Proveedor de contexto de datos para toda la app */}
-      <DataProvider>
+    // Proveedor de contexto de datos para toda la app
+    <DataProvider>
+      {/* Proveedor de contexto de autenticación para toda la app */}
+      <AuthProvider>
         <Router>
           <div className="App">
             {/* Header que se muestra en todas las páginas */}
@@ -114,8 +114,8 @@ function App() {
             <Footer />
           </div>
         </Router>
-      </DataProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </DataProvider>
   )
 }
 
