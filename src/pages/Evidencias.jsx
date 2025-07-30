@@ -15,17 +15,22 @@ const Evidencias = () => {
   const [filterStatus, setFilterStatus] = useState("all") // 'all', 'aprobado', 'pendiente', 'rechazado'
   const fileInputRef = useRef(null) // Referencia para limpiar el input de archivo
 
+  // Añade estos console.log para depurar
+  console.log("Estado actual de user:", user)
+  console.log("Estado actual de estudiante:", estudiante)
+
   useEffect(() => {
     const fetchEstudiante = async () => {
       if (user?.email) {
-        const data = obtenerEstudiante(user.email) // obtenerEstudiante is synchronous
-        // Asegurarse de que 'evidencias' exista y sea un array
+        console.log("User email disponible:", user.email)
+        const data = obtenerEstudiante(user.email)
+        console.log("Datos de estudiante obtenidos de DataContext:", data)
         if (data && !data.evidencias) {
           data.evidencias = []
         }
         setEstudiante(data)
       } else {
-        // If user email is not available, keep student as null to show loading
+        console.log("User email NO disponible, estudiante se mantiene null.")
         setEstudiante(null)
       }
     }
@@ -79,9 +84,22 @@ const Evidencias = () => {
   // Show loading spinner if user is not yet loaded or student data is not available
   if (!user || !estudiante) {
     return (
-      <div className="loading-container">
+      <div
+        className="loading-container"
+        style={{
+          backgroundColor: "#f0f2f5",
+          padding: "50px",
+          borderRadius: "10px",
+          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+        }}
+      >
         <div className="spinner"></div>
-        <p>Cargando información de evidencias...</p>
+        <p style={{ color: "#3498db", fontWeight: "bold" }}>Cargando información de evidencias...</p>
+        {/* Añade más información para depurar */}
+        {!user && <p style={{ color: "#e74c3c", fontSize: "0.9em" }}>Usuario no autenticado o no cargado.</p>}
+        {user && !estudiante && (
+          <p style={{ color: "#e74c3c", fontSize: "0.9em" }}>Estudiante no encontrado para el usuario actual.</p>
+        )}
       </div>
     )
   }
