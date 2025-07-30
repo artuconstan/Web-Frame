@@ -156,22 +156,7 @@ const Reportes = () => {
                       )}
                     </div>
 
-                    <div className="reporte-actions">
-                      <button
-                        className="btn btn-outline btn-sm"
-                        onClick={() => alert(`Abriendo vista previa: ${reporte.titulo}`)}
-                      >
-                        <Eye /> Ver
-                      </button>
-                      <a
-                        href={reporte.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-primary btn-sm"
-                      >
-                        <Download /> Descargar
-                      </a>
-                    </div>
+
                   </div>
                 ))}
               </div>

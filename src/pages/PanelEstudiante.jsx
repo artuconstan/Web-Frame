@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { useAuth } from "../contexts/AuthContext"
+import { useData } from "../contexts/DataContext"
 import "./PanelEstudiante.css"
 
 const PanelEstudiante = () => {
   const { user } = useAuth()
+  const { obtenerEstudiante } = useData()
 
   const [perfilData, setPerfilData] = useState({
     informacionPersonal: {
@@ -34,34 +36,37 @@ const PanelEstudiante = () => {
 
   useEffect(() => {
     cargarDatosEstudiante()
-  }, [])
+  }, [user])
 
   const cargarDatosEstudiante = async () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      // Datos de ejemplo
+      // Obtener datos reales del estudiante desde DataContext
+      const estudianteData = user?.email ? obtenerEstudiante(user.email) : null
+
+      // Datos combinando información real y de ejemplo
       const datos = {
         informacionPersonal: {
-          nombre: user.name || "Mateo",
-          email: user.email || "estudiante@email.com",
+          nombre: estudianteData?.nombre || user?.nombre || "Nombre no disponible",
+          email: estudianteData?.email || user?.email || "estudiante@email.com",
           telefono: "+51 987 654 321",
           direccion: "Av. Universitaria 123, Lima",
           fechaNacimiento: "1999-05-15",
-          carrera: "Ingeniería de Sistemas",
+          carrera: estudianteData?.carrera || "Ingeniería de Sistemas",
           semestre: "8vo Semestre",
         },
         informacionPractica: {
-          empresa: "TechCorp S.A.",
-          supervisor: "Ing. María González",
+          empresa: estudianteData?.empresa || "TechCorp S.A.",
+          supervisor: estudianteData?.supervisor || "Ing. María González",
           fechaInicio: "2024-01-15",
           fechaFin: "2024-04-15",
-          horasRequeridas: 480,
-          horasCompletadas: 156,
+          horasRequeridas: estudianteData?.horasRequeridas || 480,
+          horasCompletadas: estudianteData?.horasCompletadas || 156,
         },
       }
 
-      const actividadesEjemplo = [
+      const actividadesEjemplo = estudianteData?.actividadesRecientes || [
         {
           id: 1,
           fecha: "2024-01-20",
@@ -142,7 +147,7 @@ const PanelEstudiante = () => {
     <div className="panel-estudiante-container">
       {/* Header del Panel */}
       <div className="panel-header">
-        <h1> Mi Panel de Estudiante</h1>
+        <h1>👤 Mi Panel de Estudiante</h1>
         <p>Gestiona tu información personal y de práctica profesional</p>
       </div>
 
