@@ -67,44 +67,10 @@ const RegistroEmpresa = () => {
     "Otro",
   ]
 
-  const tiposEmpresa = [
-    "Micro empresa",
-    "Pequeña empresa",
-    "Mediana empresa",
-    "Gran empresa",
-    "Corporación",
-    "ONG",
-    "Institución pública",
-  ]
+
 
   const modalidades = ["Presencial", "Remoto", "Híbrido"]
 
-  const departamentos = [
-    "Lima",
-    "Arequipa",
-    "La Libertad",
-    "Piura",
-    "Lambayeque",
-    "Cusco",
-    "Junín",
-    "Ica",
-    "Ancash",
-    "Huánuco",
-    "Cajamarca",
-    "Loreto",
-    "San Martín",
-    "Ucayali",
-    "Tacna",
-    "Tumbes",
-    "Amazonas",
-    "Ayacucho",
-    "Apurímac",
-    "Huancavelica",
-    "Moquegua",
-    "Pasco",
-    "Puno",
-    "Madre de Dios",
-  ]
 
   // Función para manejar cambios en los inputs
   const handleInputChange = (e) => {
