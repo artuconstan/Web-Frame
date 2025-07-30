@@ -1,28 +1,34 @@
-/* ===== CONTENEDOR PRINCIPAL ===== */
+/*
+  Estilos para RegistroEmpresa.jsx (Formulario de Registro de Empresa)
+  Define el padding, ancho máximo, centrado y fondo para el contenedor principal.
+*/
 .registro-empresa {
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
-  background: #f8f9fa;
+  background: #f8f9fa; /* Fondo gris muy claro */
   min-height: 100vh;
 }
 
-/* ===== HEADER DE LA PÁGINA ===== */
+/*
+  Estilos para el Encabezado de la Página
+  Define la alineación de texto, margen inferior, color de texto,
+  padding, bordes redondeados y sombra.
+*/
 .page-header {
   text-align: center;
   margin-bottom: 3rem;
-
   color: white;
   padding: 3rem 2rem;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); /* Sombra con color azul-púrpura */
 }
 
 .page-header h1 {
   font-size: 2.8rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para el texto */
 }
 
 .page-header p {
@@ -32,19 +38,25 @@
   margin: 0 auto;
 }
 
-/* ===== CONTENEDOR DEL FORMULARIO ===== */
+/*
+  Estilos para el Contenedor del Formulario
+  Define el fondo, bordes redondeados, sombra y ocultamiento de desbordamiento.
+*/
 .form-container {
   background: white;
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); /* Sombra pronunciada */
+  overflow: hidden; /* Asegura que los bordes redondeados se apliquen correctamente */
 }
 
-/* ===== LAYOUT DE DOS COLUMNAS PARA SECCIONES ===== */
+/*
+  Estilos para el Layout de Dos Columnas de las Secciones del Formulario
+  Define un diseño de cuadrícula con dos columnas iguales.
+*/
 .form-sections-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 0; /* Sin espacio entre las columnas */
 }
 
 .form-section-left,
@@ -53,24 +65,31 @@
 }
 
 .form-section-left {
-  border-right: 1px solid #e9ecef;
-  background: #fafbfc;
+  border-right: 1px solid #e9ecef; /* Borde derecho para separar las columnas */
+  background: #fafbfc; /* Fondo ligeramente diferente para la columna izquierda */
 }
 
 .form-section-right {
   background: white;
 }
 
-/* ===== SECCIONES INDIVIDUALES ===== */
+/*
+  Estilos para las Secciones Individuales del Formulario
+  Define el margen inferior.
+*/
 .form-section {
   margin-bottom: 2rem;
 }
 
 .form-section:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0; /* Elimina el margen inferior de la última sección */
 }
 
-/* ===== TÍTULOS DE SECCIÓN ===== */
+/*
+  Estilos para los Títulos de Sección
+  Define el color, tamaño de fuente, peso de fuente, margen inferior,
+  diseño flexible para el icono y un borde inferior.
+*/
 .section-title {
   color: #2c3e50;
   font-size: 1.4rem;
@@ -80,34 +99,44 @@
   align-items: center;
   gap: 0.75rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid #e9ecef;
+  border-bottom: 2px solid #e9ecef; /* Borde inferior para separar el título */
 }
 
+/*
+  Estilos para el Icono de Sección
+  Define el tamaño de fuente y un degradado de color para el icono.
+*/
 .section-icon {
   font-size: 1.5rem;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Degradado azul-púrpura */
+  -webkit-background-clip: text; /* Para aplicar el degradado al texto */
+  -webkit-text-fill-color: transparent; /* Hace el texto transparente para que se vea el degradado */
   background-clip: text;
 }
 
-/* ===== GRIDS DE FORMULARIO ===== */
+/*
+  Estilos para las Cuadrículas de Formulario (Layout de Campos)
+  Define un diseño de cuadrícula con columnas adaptables y espaciado.
+*/
 .form-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr; /* Una sola columna por defecto */
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
 .form-grid-2 {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dos columnas adaptables */
 }
 
 .form-grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Tres columnas adaptables */
 }
 
-/* ===== GRUPOS DE FORMULARIO ===== */
+/*
+  Estilos para los Grupos de Formulario (Label + Input)
+  Define el diseño flexible y el espaciado.
+*/
 .form-group {
   display: flex;
   flex-direction: column;
@@ -123,51 +152,64 @@
   gap: 0.25rem;
 }
 
+/*
+  Estilos para los Campos de Entrada, Selección y Área de Texto
+  Define el padding, bordes, bordes redondeados, tamaño de fuente,
+  transiciones y fondo.
+*/
 .form-group input,
 .form-group select,
 .form-group textarea {
   padding: 0.875rem;
-  border: 2px solid #e9ecef;
+  border: 2px solid #e9ecef; /* Borde gris claro */
   border-radius: 10px;
   font-size: 0.95rem;
   transition: all 0.3s ease;
   background: white;
-  font-family: inherit;
+  font-family: inherit; /* Hereda la fuente del cuerpo */
 }
 
+/* Estilos para los campos al enfocarse */
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  transform: translateY(-1px);
+  border-color: #667eea; /* Borde azul-púrpura al enfocar */
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); /* Sombra de enfoque */
+  transform: translateY(-1px); /* Ligera elevación al enfocar */
 }
 
 .form-group textarea {
-  resize: vertical;
+  resize: vertical; /* Permite redimensionar verticalmente */
   min-height: 100px;
   font-family: inherit;
 }
 
 .form-group.full-width {
-  grid-column: 1 / -1;
+  grid-column: 1 / -1; /* Ocupa todo el ancho en la cuadrícula */
 }
 
-/* ===== CAMPOS REQUERIDOS ===== */
+/*
+  Estilos para los Indicadores de Campos Requeridos
+  Define el color y peso de fuente.
+*/
 .required {
-  color: #e74c3c;
+  color: #e74c3c; /* Rojo */
   font-weight: bold;
 }
 
-/* ===== CAJA DE INFORMACIÓN ===== */
+/*
+  Estilos para la Caja de Información
+  Define el fondo con degradado, borde izquierdo, padding, margen inferior,
+  bordes redondeados y sombra.
+*/
 .info-box {
-  background: linear-gradient(135deg, #e8f4fd, #f0f8ff);
-  border-left: 4px solid #667eea;
+  background: linear-gradient(135deg, #e8f4fd, #f0f8ff); /* Degradado azul muy claro */
+  border-left: 4px solid #667eea; /* Borde izquierdo azul-púrpura */
   padding: 1.25rem;
   margin-bottom: 1.5rem;
-  border-radius: 0 10px 10px 0;
-  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+  border-radius: 0 10px 10px 0; /* Bordes redondeados solo a la derecha */
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.1); /* Sombra sutil */
 }
 
 .info-box h4 {
@@ -184,10 +226,14 @@
   line-height: 1.5;
 }
 
-/* ===== MENSAJES DE ESTADO ===== */
+/*
+  Estilos para Mensajes de Estado (Éxito, Error)
+  Define el fondo con degradado, color de texto, padding, bordes redondeados,
+  margen inferior, diseño flexible para el icono y un borde izquierdo.
+*/
 .success-message {
-  background: linear-gradient(135deg, #d5f4e6, #c8f7c5);
-  color: #27ae60;
+  background: linear-gradient(135deg, #d5f4e6, #c8f7c5); /* Degradado verde claro */
+  color: #27ae60; /* Verde */
   padding: 1rem 1.25rem;
   border-radius: 10px;
   margin-bottom: 1.5rem;
@@ -195,12 +241,12 @@
   align-items: center;
   gap: 0.5rem;
   font-weight: 500;
-  border-left: 4px solid #27ae60;
+  border-left: 4px solid #27ae60; /* Borde izquierdo verde */
 }
 
 .error-message {
-  background: linear-gradient(135deg, #fadbd8, #ffebee);
-  color: #e74c3c;
+  background: linear-gradient(135deg, #fadbd8, #ffebee); /* Degradado rojo claro */
+  color: #e74c3c; /* Rojo */
   padding: 1rem 1.25rem;
   border-radius: 10px;
   margin-bottom: 1.5rem;
@@ -208,21 +254,29 @@
   align-items: center;
   gap: 0.5rem;
   font-weight: 500;
-  border-left: 4px solid #e74c3c;
+  border-left: 4px solid #e74c3c; /* Borde izquierdo rojo */
 }
 
-/* ===== ACCIONES DEL FORMULARIO ===== */
+/*
+  Estilos para las Acciones del Formulario (Botones de Envío)
+  Define el padding, fondo con degradado, diseño flexible,
+  justificación de contenido y alineación de ítems.
+*/
 .form-actions {
   padding: 2.5rem;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Degradado gris claro */
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6; /* Borde superior para separar */
 }
 
-/* ===== BOTONES ===== */
+/*
+  Estilos para Botones Generales
+  Define el padding, bordes, bordes redondeados, tamaño de fuente,
+  peso de fuente, cursor, transiciones, y un efecto de brillo al pasar el ratón.
+*/
 .btn {
   padding: 0.875rem 2rem;
   border: none;
@@ -236,38 +290,39 @@
   align-items: center;
   gap: 0.5rem;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Oculta el desbordamiento del efecto de brillo */
 }
 
 .btn::before {
   content: "";
   position: absolute;
   top: 0;
-  left: -100%;
+  left: -100%; /* Inicia fuera del botón */
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); /* Degradado para el brillo */
+  transition: left 0.5s; /* Transición para el movimiento del brillo */
 }
 
 .btn:hover::before {
-  left: 100%;
+  left: 100%; /* Mueve el brillo a través del botón */
 }
 
+/* Variantes de color para los botones */
 .btn-primary {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Degradado azul-púrpura */
   color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); /* Sombra con color azul-púrpura */
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, #5a6fd8, #6a42a0);
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+  background: linear-gradient(135deg, #95a5a6, #7f8c8d); /* Degradado gris */
   color: white;
   box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
 }
@@ -281,7 +336,7 @@
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  transform: none;
+  transform: none; /* Deshabilita la elevación cuando está deshabilitado */
 }
 
 .btn:disabled:hover {
@@ -289,16 +344,20 @@
   box-shadow: none;
 }
 
-/* ===== SPINNER DE CARGA ===== */
+/*
+  Estilos para el Spinner de Carga
+  Define el tamaño, bordes, forma circular y animación de giro.
+*/
 .loading-spinner {
   width: 20px;
   height: 20px;
   border: 2px solid transparent;
-  border-top: 2px solid currentColor;
+  border-top: 2px solid currentColor; /* Usa el color de texto actual */
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite; /* Animación de giro */
 }
 
+/* Animación de giro para el spinner */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -308,12 +367,15 @@
   }
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+/*
+  Media Queries para Diseño Responsivo
+  Ajusta el diseño en diferentes tamaños de pantalla.
+*/
 
 /* Tablets grandes (1024px - 1200px) */
 @media (max-width: 1200px) {
   .form-grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta las columnas */
   }
 
   .page-header h1 {
@@ -324,17 +386,17 @@
 /* Tablets (768px - 1024px) */
 @media (max-width: 1024px) {
   .form-sections-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna */
   }
 
   .form-section-left {
-    border-right: none;
-    border-bottom: 1px solid #e9ecef;
-    background: white;
+    border-right: none; /* Elimina el borde derecho */
+    border-bottom: 1px solid #e9ecef; /* Añade un borde inferior */
+    background: white; /* Cambia el fondo */
   }
 
   .form-section-right {
-    background: #fafbfc;
+    background: #fafbfc; /* Cambia el fondo */
   }
 }
 
@@ -361,18 +423,18 @@
   .form-grid,
   .form-grid-2,
   .form-grid-3 {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna para todos los grids */
     gap: 1rem;
   }
 
   .form-actions {
-    flex-direction: column;
+    flex-direction: column; /* Apila los botones de acción */
     padding: 1.5rem;
     gap: 1rem;
   }
 
   .btn {
-    width: 100%;
+    width: 100%; /* Los botones ocupan todo el ancho */
     justify-content: center;
   }
 }
@@ -392,7 +454,7 @@
   }
 
   .form-section-left,
-  .form-section-right {       
+  .form-section-right {
     padding: 1rem;
   }
 

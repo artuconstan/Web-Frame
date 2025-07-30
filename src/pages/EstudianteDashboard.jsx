@@ -4,122 +4,63 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
+import { useData } from "../contexts/DataContext" // Importa useData
 import "./EstudianteDashboard.css"
 
 const EstudianteDashboard = () => {
-  const { user } = useAuth()
+  const { user } = useAuth() // Obtén el usuario del contexto de autenticación
+  const { obtenerEstudiante, marcarNotificacionLeida: marcarNotificacionLeidaContext } = useData() // Obtén funciones de DataContext
 
-  // Estados para manejar los datos del dashboard
-  const [dashboardData, setDashboardData] = useState({
-    estadisticas: {
-      horasCompletadas: 0,
-      horasRequeridas: 480, // 3 meses * 40 horas/semana * 4 semanas
-      evidenciasSubidas: 0,
-      evidenciasAprobadas: 0,
-      calificacionPromedio: 0,
-    },
-    actividadesRecientes: [],
-    proximasActividades: [],
-    notificaciones: [],
-  })
-
+  const [estudiante, setEstudiante] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  // Efecto para cargar datos del dashboard al montar el componente
+  // Efecto para cargar datos del estudiante desde DataContext
   useEffect(() => {
-    const cargarDatosDashboard = async () => {
-      try {
-        // Simular carga de datos desde la API
-        await new Promise((resolve) => setTimeout(resolve, 1000))
-
-        // Datos de ejemplo - en un proyecto real vendrían de la API
-        const datos = {
-          estadisticas: {
-            horasCompletadas: 156,
-            horasRequeridas: 480,
-            evidenciasSubidas: 8,
-            evidenciasAprobadas: 6,
-            calificacionPromedio: 17.5,
-          },
-          actividadesRecientes: [
-            {
-              id: 1,
-              fecha: "2024-01-20",
-              actividad: "Desarrollo de módulo de reportes",
-              horas: 8,
-              estado: "completada",
-            },
-            {
-              id: 2,
-              fecha: "2024-01-19",
-              actividad: "Reunión con supervisor",
-              horas: 2,
-              estado: "completada",
-            },
-            {
-              id: 3,
-              fecha: "2024-01-18",
-              actividad: "Análisis de requerimientos",
-              horas: 6,
-              estado: "completada",
-            },
-          ],
-          proximasActividades: [
-            {
-              id: 1,
-              fecha: "2024-01-22",
-              actividad: "Presentación de avances",
-              hora: "10:00",
-              tipo: "reunion",
-            },
-            {
-              id: 2,
-              fecha: "2024-01-25",
-              actividad: "Entrega de informe semanal",
-              hora: "17:00",
-              tipo: "entrega",
-            },
-          ],
-          notificaciones: [
-            {
-              id: 1,
-              tipo: "aprobacion",
-              mensaje: 'Tu evidencia "Informe Semanal 3" ha sido aprobada',
-              fecha: "2024-01-20",
-              leida: false,
-            },
-            {
-              id: 2,
-              tipo: "recordatorio",
-              mensaje: "Recuerda subir tu informe semanal antes del viernes",
-              fecha: "2024-01-19",
-              leida: false,
-            },
-          ],
+    const fetchEstudianteData = async () => {
+      if (user?.email) {
+        try {
+          const data = obtenerEstudiante(user.email)
+          if (data) {
+            setEstudiante(data)
+          } else {
+            setError("No se encontró información para el estudiante actual.")
+          }
+        } catch (err) {
+          console.error("Error al obtener datos del estudiante:", err)
+          setError("Error al cargar la información del estudiante.")
+        } finally {
+          setLoading(false)
         }
-
-        setDashboardData(datos)
-      } catch (error) {
-        console.error("Error al cargar datos del dashboard:", error)
-      } finally {
+      } else {
         setLoading(false)
+        setError("Usuario no autenticado o email no disponible.")
       }
     }
-
-    cargarDatosDashboard()
-  }, [])
+    fetchEstudianteData()
+  }, [user, obtenerEstudiante]) // Dependencias: user y obtenerEstudiante
 
   // Función para calcular el porcentaje de progreso
   const calcularPorcentajeProgreso = () => {
-    return Math.round((dashboardData.estadisticas.horasCompletadas / dashboardData.estadisticas.horasRequeridas) * 100)
+    if (!estudiante || estudiante.horasRequeridas === 0) return 0
+    return Math.round((estudiante.horasCompletadas / estudiante.horasRequeridas) * 100)
   }
 
-  // Función para marcar notificación como leída
+  // Función para marcar notificación como leída (usando la del DataContext)
   const marcarNotificacionLeida = (id) => {
-    setDashboardData((prev) => ({
-      ...prev,
-      notificaciones: prev.notificaciones.map((notif) => (notif.id === id ? { ...notif, leida: true } : notif)),
-    }))
+    if (user?.email) {
+      marcarNotificacionLeidaContext(user.email, id)
+      // Actualiza el estado local para reflejar el cambio inmediatamente
+      setEstudiante((prevEstudiante) => {
+        if (!prevEstudiante) return null
+        return {
+          ...prevEstudiante,
+          notificaciones: prevEstudiante.notificaciones.map((notif) =>
+            notif.id === id ? { ...notif, leida: true } : notif,
+          ),
+        }
+      })
+    }
   }
 
   // Función para obtener el color del progreso según el porcentaje
@@ -129,23 +70,21 @@ const EstudianteDashboard = () => {
     return "danger"
   }
 
-  // Verificar si el usuario está autenticado
-  if (!user) {
-    return (
-      <div className="loading-container">
-        <div className="spinner"></div>
-        <p>Verificando autenticación...</p>
-      </div>
-    )
-  }
-
   if (loading) {
     return (
       <div className="loading-container">
         <div className="spinner"></div>
-        <p>Cargando dashboard...</p>
+        <p>Cargando tu dashboard...</p>
       </div>
     )
+  }
+
+  if (error) {
+    return <div className="error-message">{error}</div>
+  }
+
+  if (!estudiante) {
+    return <div className="info-message">No hay datos de estudiante disponibles.</div>
   }
 
   const porcentajeProgreso = calcularPorcentajeProgreso()
@@ -154,7 +93,7 @@ const EstudianteDashboard = () => {
     <div className="estudiante-dashboard">
       {/* Encabezado de bienvenida */}
       <div className="dashboard-header">
-        <h1>¡Bienvenida, Ana !</h1>
+        <h1>¡Bienvenido/a, {estudiante.nombre || "Estudiante"}!</h1>
         <p>Aquí tienes un resumen de tu práctica profesional</p>
       </div>
 
@@ -163,25 +102,25 @@ const EstudianteDashboard = () => {
         <div className="stat-card">
           <div className="stat-icon">⏰</div>
           <div className="stat-content">
-            <h3>{dashboardData.estadisticas.horasCompletadas}</h3>
+            <h3>{estudiante.horasCompletadas}</h3>
             <p>Horas Completadas</p>
-            <small>de {dashboardData.estadisticas.horasRequeridas} requeridas</small>
+            <small>de {estudiante.horasRequeridas} requeridas</small>
           </div>
         </div>
 
         <div className="stat-card">
           <div className="stat-icon">📁</div>
           <div className="stat-content">
-            <h3>{dashboardData.estadisticas.evidenciasSubidas}</h3>
+            <h3>{estudiante.evidenciasSubidas}</h3>
             <p>Evidencias Subidas</p>
-            <small>{dashboardData.estadisticas.evidenciasAprobadas} aprobadas</small>
+            <small>{estudiante.evidenciasAprobadas} aprobadas</small>
           </div>
         </div>
 
         <div className="stat-card">
           <div className="stat-icon">📊</div>
           <div className="stat-content">
-            <h3>{dashboardData.estadisticas.calificacionPromedio}</h3>
+            <h3>{estudiante.calificacion}</h3>
             <p>Calificación Promedio</p>
             <small>sobre 20 puntos</small>
           </div>
@@ -203,8 +142,7 @@ const EstudianteDashboard = () => {
         <div className="progress-container">
           <div className="progress-info">
             <span>
-              Horas completadas: {dashboardData.estadisticas.horasCompletadas}/
-              {dashboardData.estadisticas.horasRequeridas}
+              Horas completadas: {estudiante.horasCompletadas}/{estudiante.horasRequeridas}
             </span>
             <span>{porcentajeProgreso}%</span>
           </div>
@@ -224,15 +162,15 @@ const EstudianteDashboard = () => {
           {/* Actividades recientes */}
           <div className="dashboard-section">
             <h2>📋 Actividades Recientes</h2>
-            {dashboardData.actividadesRecientes.length === 0 ? (
+            {(estudiante.actividadesRecientes || []).length === 0 ? (
               <p className="empty-message">No hay actividades registradas aún.</p>
             ) : (
               <div className="actividades-list">
-                {dashboardData.actividadesRecientes.map((actividad) => (
+                {estudiante.actividadesRecientes.map((actividad) => (
                   <div key={actividad.id} className="actividad-item">
                     <div className="actividad-fecha">{new Date(actividad.fecha).toLocaleDateString("es-ES")}</div>
                     <div className="actividad-info">
-                      <h4>{actividad.actividad}</h4>
+                      <h4>{actividad.descripcion}</h4> {/* Usar 'descripcion' */}
                       <p>{actividad.horas} horas</p>
                     </div>
                     <div className={`actividad-estado estado-${actividad.estado}`}>{actividad.estado}</div>
@@ -248,18 +186,18 @@ const EstudianteDashboard = () => {
           {/* Próximas actividades */}
           <div className="dashboard-section">
             <h2>📅 Próximas Actividades</h2>
-            {dashboardData.proximasActividades.length === 0 ? (
+            {(estudiante.proximasActividades || []).length === 0 ? (
               <p className="empty-message">No hay actividades programadas.</p>
             ) : (
               <div className="proximas-list">
-                {dashboardData.proximasActividades.map((actividad) => (
+                {estudiante.proximasActividades.map((actividad) => (
                   <div key={actividad.id} className="proxima-item">
                     <div className="proxima-fecha">
                       <div className="fecha">{new Date(actividad.fecha).toLocaleDateString("es-ES")}</div>
                       <div className="hora">{actividad.hora}</div>
                     </div>
                     <div className="proxima-info">
-                      <h4>{actividad.actividad}</h4>
+                      <h4>{actividad.descripcion}</h4> {/* Usar 'descripcion' */}
                       <span className={`tipo-badge tipo-${actividad.tipo}`}>{actividad.tipo}</span>
                     </div>
                   </div>
@@ -274,11 +212,11 @@ const EstudianteDashboard = () => {
           {/* Notificaciones */}
           <div className="dashboard-section">
             <h2>🔔 Notificaciones</h2>
-            {dashboardData.notificaciones.length === 0 ? (
+            {(estudiante.notificaciones || []).length === 0 ? (
               <p className="empty-message">No hay notificaciones nuevas.</p>
             ) : (
               <div className="notificaciones-list">
-                {dashboardData.notificaciones.map((notificacion) => (
+                {estudiante.notificaciones.map((notificacion) => (
                   <div
                     key={notificacion.id}
                     className={`notificacion-item ${!notificacion.leida ? "no-leida" : ""}`}

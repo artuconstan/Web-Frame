@@ -1,4 +1,9 @@
-/* General styles for the container */
+/*
+  Estilos Generales para el Contenedor Principal de la Página de Evidencias
+  Define el espaciado, ancho máximo, fuente, colores de texto y fondo,
+  y asegura que el contenido ocupe al menos la altura restante de la ventana
+  después de considerar el header y el footer.
+*/
 .evidencias-container {
   padding: 30px 20px;
   max-width: 1200px;
@@ -6,10 +11,13 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
   background-color: #f8f9fa;
-  min-height: calc(100vh - 60px); /* Adjust based on header/footer height */
+  min-height: calc(100vh - 60px); /* Ajusta según la altura real del header/footer */
 }
 
-/* Header section */
+/*
+  Estilos para la Sección del Encabezado de la Página de Evidencias
+  Centra el texto, define márgenes y añade una línea divisoria inferior.
+*/
 .evidencias-header {
   text-align: center;
   margin-bottom: 40px;
@@ -30,20 +38,28 @@
   line-height: 1.5;
 }
 
-/* Main content layout */
+/*
+  Estilos para el Diseño Principal del Contenido (Grid Layout)
+  Define un diseño de cuadrícula con una sola columna por defecto
+  y un espacio entre las columnas.
+*/
 .evidencias-content {
   display: grid;
-  grid-template-columns: 1fr; /* Single column by default */
+  grid-template-columns: 1fr; /* Una sola columna por defecto */
   gap: 30px;
 }
 
+/* Media Query para Pantallas Grandes (Desktop) */
 @media (min-width: 992px) {
   .evidencias-content {
-    grid-template-columns: 1fr 2fr; /* Two columns on larger screens */
+    grid-template-columns: 1fr 2fr; /* Dos columnas en pantallas más grandes (una estrecha, una ancha) */
   }
 }
 
-/* Card styles for sections */
+/*
+  Estilos para las Tarjetas de Sección (Upload y List Sections)
+  Define el fondo, bordes redondeados, sombra y transiciones para efectos hover.
+*/
 .section-card {
   background-color: #fff;
   border-radius: 12px;
@@ -57,6 +73,10 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
+/*
+  Estilos para los Títulos de Sección (ej. "Subir Nueva Evidencia", "Mis Evidencias")
+  Define el tamaño de fuente, color, márgenes, y alineación de elementos (título e icono).
+*/
 .section-title {
   font-size: 1.6rem;
   color: #2c3e50;
@@ -70,11 +90,14 @@
 }
 
 .section-title svg {
-  color: #3498db; /* Icon color */
+  color: #3498db; /* Color del icono */
   font-size: 1.8rem;
 }
 
-/* Upload Section */
+/*
+  Estilos para la Sección de Subida de Evidencias
+  Define el diseño de los elementos del formulario.
+*/
 .upload-form {
   display: flex;
   flex-direction: column;
@@ -105,6 +128,7 @@
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
+/* Estilos para los campos de formulario al enfocarse */
 .form-group input[type="text"]:focus,
 .form-group select:focus,
 .form-group input[type="file"]:focus {
@@ -114,7 +138,7 @@
 }
 
 .form-group input[type="file"] {
-  padding: 10px; /* Adjust padding for file input */
+  padding: 10px; /* Ajusta el padding para el input de tipo archivo */
 }
 
 .file-info {
@@ -123,6 +147,10 @@
   color: #666;
 }
 
+/*
+  Estilos para el Botón de Subir Evidencia
+  Define el color de fondo, texto, padding, bordes, y efectos hover/active.
+*/
 .btn-upload {
   background-color: #3498db;
   color: white;
@@ -149,7 +177,10 @@
   transform: translateY(0);
 }
 
-/* Evidencias List Section */
+/*
+  Estilos para la Sección de Lista de Evidencias
+  Incluye filtros y barra de búsqueda.
+*/
 .filters-and-search {
   display: flex;
   flex-direction: column;
@@ -157,6 +188,7 @@
   margin-bottom: 25px;
 }
 
+/* Media Query para Pantallas Medianas (Tablet/Desktop) */
 @media (min-width: 768px) {
   .filters-and-search {
     flex-direction: row;
@@ -173,7 +205,7 @@
 
 .search-bar input {
   width: 100%;
-  padding: 10px 10px 10px 40px; /* Left padding for icon */
+  padding: 10px 10px 10px 40px; /* Padding izquierdo para el icono */
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 1rem;
@@ -209,6 +241,10 @@
   cursor: pointer;
 }
 
+/*
+  Estilos para el Mensaje de Estado Vacío (cuando no hay evidencias)
+  Centra el texto y le da un estilo visual distintivo.
+*/
 .empty-state-text {
   text-align: center;
   color: #7f8c8d;
@@ -219,6 +255,10 @@
   margin-top: 20px;
 }
 
+/*
+  Estilos para la Tabla de Evidencias
+  Define el contenedor para el scroll horizontal y el estilo de la tabla.
+*/
 .evidencias-table-container {
   overflow-x: auto;
   margin-top: 20px;
@@ -227,7 +267,7 @@
 .evidencias-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 700px; /* Ensure table doesn't get too small on mobile */
+  min-width: 700px; /* Asegura que la tabla no se haga demasiado pequeña en móvil */
 }
 
 .evidencias-table th,
@@ -249,6 +289,10 @@
   background-color: #f5f5f5;
 }
 
+/*
+  Estilos para las Insignias de Estado (Aprobado, Pendiente, Rechazado)
+  Define el color de fondo, texto, padding, bordes redondeados y tamaño de fuente.
+*/
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -262,17 +306,21 @@
 }
 
 .status-badge.aprobado {
-  background-color: #2ecc71; /* Green */
+  background-color: #2ecc71; /* Verde */
 }
 
 .status-badge.pendiente {
-  background-color: #f39c12; /* Orange */
+  background-color: #f39c12; /* Naranja */
 }
 
 .status-badge.rechazado {
-  background-color: #e74c3c; /* Red */
+  background-color: #e74c3c; /* Rojo */
 }
 
+/*
+  Estilos para el Botón de Acción de Descarga
+  Define el color de fondo, texto, padding, bordes, y efectos hover.
+*/
 .btn-action-download {
   background-color: #3498db;
   color: white;
@@ -291,23 +339,26 @@
 }
 
 .btn-action-download svg {
-  margin: 0; /* Remove default margin from Lucide icons */
+  margin: 0; /* Elimina el margen por defecto de los iconos Lucide */
 }
 
-/* Loading Spinner */
+/*
+  Estilos para el Spinner de Carga
+  Define el diseño del contenedor, el spinner en sí y la animación de giro.
+*/
 .loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 80vh; /* Occupy most of the viewport height */
+  min-height: 80vh; /* Ocupa la mayor parte de la altura del viewport */
   color: #555;
   font-size: 1.2rem;
 }
 
 .spinner {
-  border: 6px solid #f3f3f3; /* Light grey */
-  border-top: 6px solid #3498db; /* Blue */
+  border: 6px solid #f3f3f3; /* Gris claro */
+  border-top: 6px solid #3498db; /* Azul */
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -315,6 +366,7 @@
   margin-bottom: 20px;
 }
 
+/* Animación de giro para el spinner */
 @keyframes spin {
   0% {
     transform: rotate(0deg);

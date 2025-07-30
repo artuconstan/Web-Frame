@@ -1,6 +1,9 @@
-/* Página de inicio */
+/*
+  Estilos para la Página de Inicio (Home)
+  Define la altura mínima y el diseño flexible para el contenedor principal.
+*/
 .home-container {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 200px); /* Ajusta la altura mínima considerando el header y footer */
   display: flex;
   flex-direction: column;
 }
@@ -11,10 +14,14 @@
   flex-direction: column;
 }
 
+/*
+  Estilos para el Contenedor de Contenido Principal (Hero Section)
+  Define un diseño de cuadrícula con dos columnas para el texto y el logo.
+*/
 .content-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 4rem; /* Espacio entre las columnas */
   align-items: center;
   margin-bottom: 3rem;
 }
@@ -26,7 +33,7 @@
 .main-title {
   font-size: 3.5rem;
   font-weight: 700;
-  color: var(--gray-800);
+  color: var(--gray-800); /* Color de texto oscuro */
   line-height: 1.1;
   margin-bottom: 1rem;
 }
@@ -37,6 +44,10 @@
   align-items: center;
 }
 
+/*
+  Estilos para el Logo Circular con Decoraciones
+  Define el tamaño, posición relativa y centrado del logo.
+*/
 .circular-logo {
   position: relative;
   width: 280px;
@@ -55,8 +66,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: var(--shadow-lg);
-  z-index: 10;
+  box-shadow: var(--shadow-lg); /* Sombra grande */
+  z-index: 10; /* Asegura que esté por encima de las decoraciones */
   position: relative;
 }
 
@@ -67,9 +78,13 @@
 .logo-brand {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--error-red);
+  color: var(--error-red); /* Color rojo para el texto de la marca */
 }
 
+/*
+  Estilos para las Decoraciones Circulares alrededor del Logo
+  Define la posición absoluta, forma circular, bordes y opacidad.
+*/
 .circle-decoration {
   position: absolute;
   border-radius: 50%;
@@ -79,7 +94,7 @@
 .circle-1 {
   width: 240px;
   height: 240px;
-  border-color: var(--primary-blue);
+  border-color: var(--primary-blue); /* Color azul */
   top: 20px;
   left: 20px;
   opacity: 0.6;
@@ -88,7 +103,7 @@
 .circle-2 {
   width: 260px;
   height: 260px;
-  border-color: var(--error-red);
+  border-color: var(--error-red); /* Color rojo */
   top: 10px;
   left: 10px;
   opacity: 0.4;
@@ -97,12 +112,16 @@
 .circle-3 {
   width: 280px;
   height: 280px;
-  border-color: var(--success-green);
+  border-color: var(--success-green); /* Color verde */
   top: 0;
   left: 0;
   opacity: 0.3;
 }
 
+/*
+  Estilos para los Botones de Acceso (Estudiante, Coordinador)
+  Define el diseño flexible, espaciado y centrado de los botones.
+*/
 .access-buttons {
   display: flex;
   justify-content: center;
@@ -118,7 +137,7 @@
   padding: 2rem;
   background: white;
   border-radius: 12px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow); /* Sombra estándar */
   text-decoration: none;
   color: var(--gray-800);
   transition: all 0.3s ease;
@@ -126,17 +145,17 @@
 }
 
 .access-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px); /* Efecto de elevación al pasar el ratón */
+  box-shadow: var(--shadow-xl); /* Sombra más grande al hover */
 }
 
 .student-btn:hover {
-  border-color: var(--primary-blue);
+  border-color: var(--primary-blue); /* Borde azul al hover para estudiante */
   color: var(--primary-blue);
 }
 
 .coordinator-btn:hover {
-  border-color: var(--success-green);
+  border-color: var(--success-green); /* Borde verde al hover para coordinador */
   color: var(--success-green);
 }
 
@@ -145,9 +164,13 @@
   font-size: 1.1rem;
 }
 
-/* Sección Hero */
+/*
+  Estilos para la Sección Hero (Banner Principal)
+  Define el fondo con degradado, color de texto, padding, alineación de texto
+  y un patrón de fondo SVG.
+*/
 .hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Degradado azul-púrpura */
   color: white;
   padding: 4rem 2rem;
   text-align: center;
@@ -162,6 +185,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  /* Patrón de cuadrícula SVG como fondo */
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
   opacity: 0.3;
 }
@@ -189,6 +213,10 @@
   margin-top: 2rem;
 }
 
+/*
+  Estilos para Botones Generales (dentro de la sección Hero)
+  Define el padding, bordes redondeados, transiciones y cursor.
+*/
 .btn {
   display: inline-block;
   padding: 0.75rem 2rem;
@@ -201,18 +229,22 @@
 }
 
 .btn-primary {
-  background-color: #4299e1;
+  background-color: #4299e1; /* Azul */
   color: white;
 }
 
 .btn-primary:hover {
   background-color: #3182ce;
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
 }
 
+/*
+  Estilos para la Sección de Características
+  Define el padding, color de fondo y centrado del título.
+*/
 .features-section {
   padding: 4rem 2rem;
-  background-color: #f7fafc;
+  background-color: #f7fafc; /* Fondo gris muy claro */
 }
 
 .container {
@@ -224,12 +256,16 @@
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #2d3748;
+  color: #2d3748; /* Color de texto oscuro */
 }
 
+/*
+  Estilos para la Cuadrícula de Características
+  Define un diseño de cuadrícula responsivo para las tarjetas de características.
+*/
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas adaptables */
   gap: 2rem;
 }
 
@@ -238,12 +274,12 @@
   padding: 2rem;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
   transition: transform 0.3s;
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
 }
 
 .feature-icon {
@@ -257,11 +293,14 @@
 }
 
 .feature-card p {
-  color: #718096;
+  color: #718096; /* Color gris */
   line-height: 1.6;
 }
 
-/* Sección de información */
+/*
+  Estilos para la Sección de Información (Pasos)
+  Define el padding y centrado del título.
+*/
 .info-section {
   padding: 4rem 2rem;
 }
@@ -273,9 +312,13 @@
   color: #2d3748;
 }
 
+/*
+  Estilos para la Cuadrícula de Pasos
+  Define un diseño de cuadrícula responsivo para los pasos.
+*/
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas adaptables */
   gap: 2rem;
 }
 
@@ -284,10 +327,14 @@
   padding: 1.5rem;
 }
 
+/*
+  Estilos para el Número de Paso (Círculo)
+  Define el tamaño, forma circular, fondo con degradado y estilo de texto.
+*/
 .step-number {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Degradado azul-púrpura */
   color: white;
   border-radius: 50%;
   display: flex;
@@ -308,10 +355,13 @@
   line-height: 1.6;
 }
 
-/* Responsive */
+/*
+  Media Queries para Diseño Responsivo
+  Ajusta el diseño en diferentes tamaños de pantalla (tablets y móviles).
+*/
 @media (max-width: 768px) {
   .content-wrapper {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna */
     gap: 2rem;
     text-align: center;
   }
@@ -354,7 +404,7 @@
   }
 
   .access-buttons {
-    flex-direction: column;
+    flex-direction: column; /* Apila los botones de acceso */
     align-items: center;
   }
 
@@ -371,11 +421,11 @@
   }
 
   .features-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna para características */
   }
 
   .steps-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna para pasos */
   }
 
   .hero-title {

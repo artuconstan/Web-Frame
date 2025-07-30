@@ -1,51 +1,68 @@
+/*
+  Estilos Generales para el Contenedor Principal del Dashboard del Coordinador
+  Define el padding, ancho máximo, y asegura una altura mínima para el contenido,
+  ajustando para el header y el footer.
+*/
 .coordinador-dashboard {
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 200px); /* Ajusta la altura mínima considerando header/footer */
 }
 
+/*
+  Estilos para el Encabezado del Dashboard
+  Centra el texto y define el tamaño y color de los títulos y subtítulos.
+*/
 .dashboard-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
 .dashboard-header h1 {
-  color: #2c3e50;
+  color: #2c3e50; /* Color oscuro para el título */
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
 .dashboard-header p {
-  color: #7f8c8d;
+  color: #7f8c8d; /* Color gris para el subtítulo */
   font-size: 1.1rem;
 }
 
+/*
+  Estilos para la Cuadrícula de Estadísticas (Stats Grid)
+  Define un diseño de cuadrícula responsivo para las tarjetas de estadísticas.
+*/
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas adaptables */
+  gap: 1.5rem; /* Espacio entre las tarjetas */
   margin-bottom: 2rem;
 }
 
+/*
+  Estilos para las Tarjetas de Estadísticas Individuales (Stat Card)
+  Define el fondo, padding, bordes redondeados, sombra y efecto hover.
+*/
 .stat-card {
   background: white;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease; /* Transición suave para el hover */
 }
 
 .stat-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px); /* Efecto de elevación al pasar el ratón */
 }
 
 .stat-icon {
-  font-size: 2.5rem;
-  opacity: 0.8;
+  font-size: 2.5rem; /* Tamaño del icono */
+  opacity: 0.8; /* Ligera transparencia */
 }
 
 .stat-content h3 {
@@ -55,16 +72,20 @@
 }
 
 .stat-content p {
-  color: #3498db;
+  color: #3498db; /* Color azul para el texto principal */
   font-weight: 600;
   margin: 0.2rem 0;
 }
 
 .stat-content small {
-  color: #7f8c8d;
+  color: #7f8c8d; /* Color gris para el texto pequeño */
   font-size: 0.8rem;
 }
 
+/*
+  Estilos para la Sección de Alertas
+  Define el fondo, padding, bordes redondeados y sombra.
+*/
 .alertas-section {
   background: white;
   padding: 1.5rem;
@@ -82,31 +103,36 @@
 .alertas-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1rem; /* Espacio entre los ítems de alerta */
 }
 
+/*
+  Estilos para cada Ítem de Alerta
+  Define el diseño, padding, bordes redondeados y un borde izquierdo para indicar prioridad.
+*/
 .alerta-item {
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
   border-radius: 8px;
-  border-left: 4px solid;
+  border-left: 4px solid; /* Borde izquierdo para indicar prioridad */
 }
 
+/* Colores de fondo y borde para diferentes prioridades de alerta */
 .prioridad-alta {
-  background: #fde8e8;
-  border-left-color: #e74c3c;
+  background: #fde8e8; /* Rojo claro */
+  border-left-color: #e74c3c; /* Rojo */
 }
 
 .prioridad-media {
-  background: #fef3c7;
-  border-left-color: #f39c12;
+  background: #fef3c7; /* Amarillo claro */
+  border-left-color: #f39c12; /* Naranja */
 }
 
 .prioridad-baja {
-  background: #e8f5e8;
-  border-left-color: #27ae60;
+  background: #e8f5e8; /* Verde claro */
+  border-left-color: #27ae60; /* Verde */
 }
 
 .alerta-icon {
@@ -125,12 +151,20 @@
   text-transform: uppercase;
 }
 
+/*
+  Estilos para el Contenido Principal del Dashboard (columnas)
+  Define un diseño de columna flexible.
+*/
 .dashboard-content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2rem; /* Espacio entre las secciones */
 }
 
+/*
+  Estilos para la Sección de Estudiantes
+  Define el fondo, padding, bordes redondeados y sombra.
+*/
 .estudiantes-section {
   background: white;
   padding: 1.5rem;
@@ -138,6 +172,10 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/*
+  Estilos para el Encabezado de Sección (dentro de Estudiantes Section)
+  Define el diseño para el título y las acciones (búsqueda, botones).
+*/
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -170,6 +208,10 @@
   border-color: #3498db;
 }
 
+/*
+  Estilos para Botones Generales
+  Define el padding, bordes, fuente, cursor y transiciones.
+*/
 .btn {
   padding: 0.5rem 1rem;
   border: none;
@@ -183,8 +225,9 @@
   text-align: center;
 }
 
+/* Variantes de color para los botones */
 .btn-secondary {
-  background: #95a5a6;
+  background: #95a5a6; /* Gris */
   color: white;
 }
 
@@ -209,7 +252,7 @@
 }
 
 .btn-success {
-  background: #27ae60;
+  background: #27ae60; /* Verde */
   color: white;
 }
 
@@ -218,7 +261,7 @@
 }
 
 .btn-danger {
-  background: #e74c3c;
+  background: #e74c3c; /* Rojo */
   color: white;
 }
 
@@ -226,8 +269,12 @@
   background: #c0392b;
 }
 
+/*
+  Estilos para la Tabla de Estudiantes
+  Define el contenedor para el scroll horizontal y el estilo de la tabla.
+*/
 .estudiantes-table {
-  overflow-x: auto;
+  overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
 }
 
 .estudiantes-table table {
@@ -235,18 +282,18 @@
   border-collapse: collapse;
   background: white;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: hidden; /* Asegura que los bordes redondeados se apliquen a la tabla */
 }
 
 .estudiantes-table th,
 .estudiantes-table td {
   padding: 1rem;
   text-align: left;
-  border-bottom: 1px solid #ecf0f1;
+  border-bottom: 1px solid #ecf0f1; /* Línea divisoria entre filas */
 }
 
 .estudiantes-table th {
-  background: #f8f9fa;
+  background: #f8f9fa; /* Fondo para el encabezado de la tabla */
   color: #2c3e50;
   font-weight: 600;
   font-size: 0.9rem;
@@ -280,11 +327,15 @@
 
 .progreso-fill {
   height: 100%;
-  background: linear-gradient(90deg, #3498db, #2ecc71);
+  background: linear-gradient(90deg, #3498db, #2ecc71); /* Degradado de color para el progreso */
   border-radius: 4px;
   transition: width 0.3s ease;
 }
 
+/*
+  Estilos para las Insignias de Estado (Activo, Retrasado, Inactivo)
+  Define el color de fondo, texto, padding, bordes redondeados y tamaño de fuente.
+*/
 .estado-badge {
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
@@ -294,18 +345,18 @@
 }
 
 .estado-activo {
-  background: #d5f4e6;
-  color: #27ae60;
+  background: #d5f4e6; /* Verde claro */
+  color: #27ae60; /* Verde */
 }
 
 .estado-retrasado {
-  background: #fde8e8;
-  color: #e74c3c;
+  background: #fde8e8; /* Rojo claro */
+  color: #e74c3c; /* Rojo */
 }
 
 .estado-inactivo {
-  background: #f8f9fa;
-  color: #7f8c8d;
+  background: #f8f9fa; /* Gris muy claro */
+  color: #7f8c8d; /* Gris */
 }
 
 .calificacion {
@@ -318,6 +369,10 @@
   gap: 0.5rem;
 }
 
+/*
+  Estilos para la Sección de Evidencias
+  Define el fondo, padding, bordes redondeados y sombra.
+*/
 .evidencias-section {
   background: white;
   padding: 1.5rem;
@@ -351,7 +406,7 @@
   padding: 1rem;
   background: #f8f9fa;
   border-radius: 8px;
-  border-left: 4px solid #f39c12;
+  border-left: 4px solid #f39c12; /* Borde naranja para evidencias pendientes */
 }
 
 .evidencia-info {
@@ -384,26 +439,34 @@
   gap: 0.5rem;
 }
 
+/*
+  Estilos para el Overlay del Modal
+  Cubre toda la pantalla con un fondo semitransparente para el modal.
+*/
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
 
+/*
+  Estilos para el Contenido del Modal
+  Define el fondo, bordes redondeados, ancho y altura máxima, y scroll si el contenido es largo.
+*/
 .modal-content {
   background: white;
   border-radius: 12px;
   width: 90%;
   max-width: 500px;
-  max-height: 80vh;
-  overflow-y: auto;
+  max-height: 80vh; /* Altura máxima para permitir scroll */
+  overflow-y: auto; /* Habilita el scroll vertical si el contenido excede la altura */
 }
 
 .modal-header {
@@ -469,6 +532,10 @@
   justify-content: flex-end;
 }
 
+/*
+  Estilos para el Contenedor de Carga (Loading Container)
+  Centra el contenido y define el espacio.
+*/
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -478,6 +545,10 @@
   gap: 1rem;
 }
 
+/*
+  Estilos para el Spinner de Carga
+  Define el diseño del spinner y la animación de giro.
+*/
 .spinner {
   width: 40px;
   height: 40px;
@@ -487,6 +558,7 @@
   animation: spin 1s linear infinite;
 }
 
+/* Animación de giro para el spinner */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -496,14 +568,17 @@
   }
 }
 
-/* Responsive */
+/*
+  Media Queries para Responsividad
+  Ajusta el diseño en diferentes tamaños de pantalla.
+*/
 @media (max-width: 768px) {
   .coordinador-dashboard {
     padding: 1rem;
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
   }
 
   .section-header {

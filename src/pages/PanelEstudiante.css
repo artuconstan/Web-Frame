@@ -1,20 +1,28 @@
-/* Estilos para PanelEstudiante.jsx (Mi Perfil) */
-
+/*
+  Estilos para PanelEstudiante.jsx (Mi Perfil)
+  Define el padding, color de fondo, altura mínima y márgenes laterales
+  para el contenedor principal de la página del panel de estudiante.
+*/
 .panel-estudiante-container {
   padding: 2rem;
-  background-color: #f8f9fa;
-  min-height: calc(100vh - 120px); /* Ajusta según el header y footer */
-  margin-left: 80px;
-  margin-right: 80px;
+  background-color: #f8f9fa; /* Fondo gris claro */
+  min-height: calc(100vh - 120px); /* Ajusta la altura mínima considerando el header y footer */
+  margin-left: 80px; /* Margen izquierdo */
+  margin-right: 80px; /* Margen derecho */
 }
 
+/*
+  Estilos para el Encabezado del Panel
+  Define el fondo, padding, bordes redondeados, margen inferior,
+  alineación de texto y sombra para el encabezado de la página.
+*/
 .panel-header {
-  background:  white;
+  background: white; /* Fondo blanco */
   padding: 2rem;
   border-radius: 12px;
   margin-bottom: 2rem;
   text-align: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra pronunciada */
 }
 
 .panel-header h1 {
@@ -25,35 +33,47 @@
 
 .panel-header p {
   font-size: 1.1rem;
-  opacity: 0.9;
+  opacity: 0.9; /* Ligera transparencia para el subtítulo */
 }
 
+/*
+  Estilos para el Contenido Principal del Panel (Layout de Columnas)
+  Define un diseño de cuadrícula con dos columnas, donde la izquierda es más ancha.
+*/
 .panel-content {
   display: grid;
-  grid-template-columns: 1.5fr 1fr; /* Columna izquierda más ancha */
-  gap: 2rem;
+  grid-template-columns: 1.5fr 1fr; /* Columna izquierda más ancha (1.5 partes) y derecha (1 parte) */
+  gap: 2rem; /* Espacio entre las columnas */
 }
 
 .content-left,
 .content-right {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2rem; /* Espacio entre las secciones dentro de cada columna */
 }
 
+/*
+  Estilos para las Secciones de Información (ej. Información Personal, Información de Práctica)
+  Define el fondo, padding, bordes redondeados y sombra.
+*/
 .info-section {
   background-color: white;
   padding: 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
+/*
+  Estilos para el Encabezado de cada Sección
+  Define el diseño flexible, alineación, margen inferior y un borde inferior.
+*/
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid #eee; /* Borde inferior para separar el título */
   padding-bottom: 0.5rem;
 }
 
@@ -63,11 +83,15 @@
   margin: 0;
 }
 
+/*
+  Estilos para las Cuadrículas de Información (Personal, Práctica)
+  Define un diseño de cuadrícula con dos columnas para los ítems de información.
+*/
 .info-grid,
 .practica-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Dos columnas para los ítems de información */
-  gap: 1rem;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 1rem; /* Espacio entre los ítems */
 }
 
 .info-item {
@@ -87,22 +111,26 @@
   font-size: 1rem;
   color: #333;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eee; /* Borde inferior para cada ítem */
 }
 
 .info-item input.form-control {
-  border: 1px solid #ddd;
+  border: 1px solid #ddd; /* Borde para campos de entrada */
   border-radius: 5px;
   padding: 0.5rem 0.8rem;
   transition: border-color 0.2s ease-in-out;
 }
 
+/* Estilos para los campos de entrada al enfocarse */
 .info-item input.form-control:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #007bff; /* Borde azul al enfocar */
 }
 
-/* Actividades Recientes en PanelEstudiante */
+/*
+  Estilos para la Lista de Actividades Recientes en PanelEstudiante
+  Define el diseño flexible y el espaciado entre los ítems.
+*/
 .actividades-lista {
   display: flex;
   flex-direction: column;
@@ -114,7 +142,7 @@
   align-items: center;
   padding: 0.8rem;
   border-radius: 8px;
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; /* Fondo gris muy claro */
   border: 1px solid #eee;
   justify-content: space-between;
 }
@@ -122,12 +150,12 @@
 .actividad-fecha {
   font-size: 0.9rem;
   color: #777;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Evita que el texto de la fecha se encoja */
   margin-right: 1rem;
 }
 
 .actividad-content {
-  flex-grow: 1;
+  flex-grow: 1; /* Permite que el contenido de la actividad ocupe el espacio restante */
 }
 
 .actividad-content h4 {
@@ -147,6 +175,10 @@
   margin-left: 0.5rem;
 }
 
+/*
+  Estilos para las Insignias de Estado de Actividad
+  Define el padding, bordes redondeados, tamaño de fuente y colores específicos.
+*/
 .actividad-estado {
   padding: 0.3rem 0.7rem;
   border-radius: 5px;
@@ -157,16 +189,19 @@
 }
 
 .estado-aprobada {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #d4edda; /* Verde claro */
+  color: #155724; /* Verde oscuro */
 }
 
 .estado-pendiente {
-  background-color: #fff3cd;
-  color: #856404;
+  background-color: #fff3cd; /* Amarillo claro */
+  color: #856404; /* Marrón oscuro */
 }
 
-/* Progreso de Horas en PanelEstudiante */
+/*
+  Estilos para la Sección de Progreso de Horas
+  Define el margen superior y un borde superior para separarla.
+*/
 .progreso-horas {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
@@ -189,11 +224,15 @@
 .progreso-porcentaje {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #007bff;
+  color: #007bff; /* Color azul para el porcentaje */
 }
 
+/*
+  Estilos para la Barra de Progreso
+  Define el fondo, bordes redondeados, altura y el relleno de la barra.
+*/
 .progreso-bar {
-  background-color: #e0e0e0;
+  background-color: #e0e0e0; /* Fondo gris de la barra */
   border-radius: 5px;
   height: 10px;
   overflow: hidden;
@@ -202,9 +241,9 @@
 
 .progreso-fill {
   height: 100%;
-  background-color: #007bff;
+  background-color: #007bff; /* Color azul para el relleno de progreso */
   border-radius: 5px;
-  transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out; /* Transición suave para el cambio de ancho */
 }
 
 .progreso-info {
@@ -214,7 +253,11 @@
   color: #555;
 }
 
-/* Botones generales */
+/*
+  Estilos para Botones Generales
+  Define el padding, bordes redondeados, cursor, tamaño de fuente,
+  peso de fuente y transiciones.
+*/
 .btn {
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
@@ -227,6 +270,7 @@
   text-align: center;
 }
 
+/* Variante de botón con borde (outline) */
 .btn-outline {
   background-color: transparent;
   color: #007bff;
@@ -243,7 +287,10 @@
   cursor: not-allowed;
 }
 
-/* Loading spinner */
+/*
+  Estilos para el Contenedor de Carga (Loading Spinner)
+  Centra el contenido y define el tamaño de fuente y color.
+*/
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -254,16 +301,21 @@
   color: #555;
 }
 
+/*
+  Estilos para el Spinner de Carga
+  Define el diseño del spinner y la animación de giro.
+*/
 .spinner {
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #007bff;
+  border: 4px solid rgba(0, 0, 0, 0.1); /* Borde semitransparente */
+  border-left-color: #007bff; /* Color azul para el borde izquierdo */
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite; /* Animación de giro */
   margin-bottom: 1rem;
 }
 
+/* Animación de giro para el spinner */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -273,16 +325,19 @@
   }
 }
 
-/* Media Queries para Responsividad */
+/*
+  Media Queries para Diseño Responsivo
+  Ajusta el diseño en diferentes tamaños de pantalla.
+*/
 @media (max-width: 992px) {
   .panel-content {
-    grid-template-columns: 1fr; /* Una columna en tablet */
+    grid-template-columns: 1fr; /* Una sola columna en tablets */
   }
 }
 
 @media (max-width: 768px) {
   .panel-estudiante-container {
-    padding: 1rem;
+    padding: 1rem; /* Reduce el padding en pantallas más pequeñas */
   }
 
   .panel-header {
@@ -295,11 +350,11 @@
 
   .info-grid,
   .practica-grid {
-    grid-template-columns: 1fr; /* Una columna en móvil */
+    grid-template-columns: 1fr; /* Una sola columna en móviles */
   }
 
   .section-header {
-    flex-direction: column;
+    flex-direction: column; /* Apila el título y las acciones */
     align-items: flex-start;
     gap: 0.5rem;
   }

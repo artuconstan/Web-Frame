@@ -1,30 +1,37 @@
-/* ===== CONTENEDOR PRINCIPAL ===== */
+/*
+  Estilos para Reportes.jsx (Página de Reportes del Estudiante)
+  Define el padding, ancho máximo, centrado, altura mínima, fondo y fuente.
+*/
 .reportes-container {
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
-  min-height: calc(100vh - 120px); /* Adjusted for header/footer */
-  background: #f8f9fa;
+  min-height: calc(100vh - 120px); /* Ajusta la altura mínima considerando el header y footer */
+  background: #f8f9fa; /* Fondo gris muy claro */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
 }
 
-/* ===== HEADER DE LA PÁGINA ===== */
+/*
+  Estilos para el Encabezado de la Página
+  Define la alineación de texto, margen inferior, fondo con degradado,
+  color de texto, padding, bordes redondeados y sombra.
+*/
 .page-header {
   text-align: center;
   margin-bottom: 3rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Degradado azul-púrpura */
   color: white;
   padding: 3rem 2rem;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); /* Sombra con color azul-púrpura */
 }
 
 .page-header h1 {
   font-size: 2.8rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para el texto */
 }
 
 .page-header p {
@@ -34,34 +41,43 @@
   margin: 0 auto;
 }
 
-/* ===== LAYOUT PRINCIPAL DE DOS COLUMNAS ===== */
+/*
+  Estilos para el Layout Principal de Dos Columnas
+  Define un diseño de cuadrícula con dos columnas, donde la izquierda es más ancha.
+*/
 .reportes-main-layout {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr; /* Left column wider for list */
-  gap: 2rem;
+  grid-template-columns: 1.2fr 0.8fr; /* Columna izquierda más ancha (1.2 partes) y derecha (0.8 partes) */
+  gap: 2rem; /* Espacio entre las columnas */
   margin-bottom: 3rem;
 }
 
-/* ===== COLUMNA IZQUIERDA ===== */
+/*
+  Estilos para las Columnas Izquierda y Derecha
+  Define el diseño flexible y el espaciado entre las secciones.
+*/
 .reportes-left-column {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* ===== COLUMNA DERECHA ===== */
 .reportes-right-column {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* ===== SECCIONES GENERALES ===== */
+/*
+  Estilos para las Secciones Generales (Formulario, Lista, Estadísticas)
+  Define el fondo, padding, bordes redondeados, sombra, transiciones
+  y un borde superior con degradado.
+*/
 .reportes-section {
   background: white;
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra pronunciada */
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -74,15 +90,19 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Borde superior con degradado */
 }
 
 .reportes-section:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); /* Ligera elevación al pasar el ratón */
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al hover */
 }
 
-/* ===== TÍTULOS DE SECCIÓN ===== */
+/*
+  Estilos para los Títulos de Sección
+  Define el color, tamaño de fuente, peso de fuente, margen inferior,
+  diseño flexible para el icono y un degradado de color para el icono.
+*/
 .section-title {
   color: #2c3e50;
   font-size: 1.5rem;
@@ -99,13 +119,16 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  width: 24px; /* Ensure consistent icon size */
+  width: 24px; /* Asegura un tamaño de icono consistente */
   height: 24px;
 }
 
-/* ===== SECCIÓN DE FILTROS (FORMULARIO DE GENERACIÓN) ===== */
+/*
+  Estilos para la Sección de Filtros (Formulario de Generación de Reportes)
+  Define el fondo con degradado.
+*/
 .filtros-section {
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Degradado gris claro */
 }
 
 .filtros-form {
@@ -116,7 +139,7 @@
 
 .form-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas adaptables */
   gap: 1rem;
 }
 
@@ -132,20 +155,26 @@
   font-size: 0.9rem;
 }
 
+/*
+  Estilos para los Campos de Formulario (Input, Select)
+  Define el padding, bordes, bordes redondeados, tamaño de fuente,
+  transiciones y fondo.
+*/
 .form-control {
   padding: 0.875rem;
-  border: 2px solid #e9ecef;
+  border: 2px solid #e9ecef; /* Borde gris claro */
   border-radius: 10px;
   font-size: 0.95rem;
   transition: all 0.3s ease;
   background: white;
 }
 
+/* Estilos para los campos al enfocarse */
 .form-control:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  transform: translateY(-1px);
+  border-color: #667eea; /* Borde azul-púrpura al enfocar */
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); /* Sombra de enfoque */
+  transform: translateY(-1px); /* Ligera elevación al enfocar */
 }
 
 .form-control:disabled {
@@ -154,14 +183,21 @@
   opacity: 0.7;
 }
 
-/* ===== ACCIONES DE FORMULARIO ===== */
+/*
+  Estilos para las Acciones del Formulario (Botones)
+  Define el diseño flexible y justificación de contenido.
+*/
 .form-actions {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
 }
 
-/* ===== BOTONES ===== */
+/*
+  Estilos para Botones Generales
+  Define el padding, bordes, bordes redondeados, tamaño de fuente,
+  peso de fuente, cursor, transiciones, y un efecto de brillo al pasar el ratón.
+*/
 .btn {
   padding: 0.875rem 1.5rem;
   border: none;
@@ -194,8 +230,9 @@
   left: 100%;
 }
 
+/* Variantes de color para los botones */
 .btn-primary {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Degradado azul-púrpura */
   color: white;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
@@ -213,7 +250,7 @@
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+  background: linear-gradient(135deg, #95a5a6, #7f8c8d); /* Degradado gris */
   color: white;
   box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
 }
@@ -237,14 +274,17 @@
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
-/* ===== LISTA DE REPORTES ===== */
+/*
+  Estilos para la Lista de Reportes
+  Define la altura fija para el scroll, el desbordamiento y el padding derecho.
+*/
 .reportes-lista {
-  max-height: 600px; /* Fixed height for scroll */
+  max-height: 600px; /* Altura fija para habilitar el scroll */
   overflow-y: auto;
   padding-right: 0.5rem;
 }
 
-/* Scrollbar personalizada */
+/* Estilos para la barra de desplazamiento personalizada */
 .reportes-lista::-webkit-scrollbar {
   width: 6px;
 }
@@ -255,7 +295,7 @@
 }
 
 .reportes-lista::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Degradado azul-púrpura */
   border-radius: 10px;
 }
 
@@ -263,9 +303,13 @@
   background: linear-gradient(135deg, #5a6fd8, #6a42a0);
 }
 
-/* ===== TARJETAS DE REPORTE ===== */
+/*
+  Estilos para las Tarjetas de Reporte Individuales
+  Define el fondo con degradado, bordes, bordes redondeados, padding,
+  margen inferior, transiciones y un borde izquierdo con degradado.
+*/
 .reporte-card {
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  background: linear-gradient(135deg, #ffffff, #f8f9fa); /* Degradado blanco-gris claro */
   border: 1px solid #e9ecef;
   border-radius: 12px;
   padding: 1.5rem;
@@ -282,11 +326,11 @@
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Borde izquierdo con degradado */
 }
 
 .reporte-card:hover {
-  transform: translateX(4px);
+  transform: translateX(4px); /* Ligero desplazamiento a la derecha al pasar el ratón */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border-color: #667eea;
 }
@@ -303,6 +347,11 @@
   margin-right: 0.5rem;
 }
 
+/*
+  Estilos para las Insignias de Estado del Reporte
+  Define el padding, bordes redondeados, tamaño de fuente, peso de fuente,
+  transformación de texto y espaciado de letras, con colores específicos.
+*/
 .reporte-estado {
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
@@ -313,18 +362,18 @@
 }
 
 .estado-completado {
-  background: linear-gradient(135deg, #d5f4e6, #c8f7c5);
-  color: #27ae60; /* Green */
+  background: linear-gradient(135deg, #d5f4e6, #c8f7c5); /* Degradado verde claro */
+  color: #27ae60; /* Verde */
 }
 
 .estado-pendiente {
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-  color: #d97706; /* Orange */
+  background: linear-gradient(135deg, #fef3c7, #fde68a); /* Degradado amarillo claro */
+  color: #d97706; /* Naranja */
 }
 
 .estado-error {
-  background: linear-gradient(135deg, #fadbd8, #ffebee);
-  color: #e74c3c; /* Red */
+  background: linear-gradient(135deg, #fadbd8, #ffebee); /* Degradado rojo claro */
+  color: #e74c3c; /* Rojo */
 }
 
 .reporte-content h3 {
@@ -334,9 +383,13 @@
   font-weight: 600;
 }
 
+/*
+  Estilos para la Meta Información del Reporte
+  Define un diseño de cuadrícula con columnas adaptables y espaciado.
+*/
 .reporte-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Columnas adaptables */
   gap: 0.75rem;
   margin-bottom: 1rem;
 }
@@ -348,7 +401,7 @@
 }
 
 .meta-item strong {
-  color: #667eea;
+  color: #667eea; /* Azul-púrpura */
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -360,9 +413,14 @@
   font-size: 0.9rem;
 }
 
+/*
+  Estilos para los Comentarios del Reporte
+  Define el fondo, borde izquierdo, padding, bordes redondeados,
+  margen superior, tamaño de fuente y color de texto.
+*/
 .reporte-comentarios {
   background-color: #f0f2f5;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #667eea; /* Borde izquierdo azul-púrpura */
   padding: 0.75rem 1rem;
   border-radius: 8px;
   margin-top: 1rem;
@@ -386,15 +444,23 @@
   font-size: 0.85rem;
 }
 
-/* ===== ESTADÍSTICAS ===== */
+/*
+  Estilos para la Cuadrícula de Estadísticas
+  Define un diseño de cuadrícula responsivo para las tarjetas de estadísticas.
+*/
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Columnas adaptables */
   gap: 1rem;
 }
 
+/*
+  Estilos para las Tarjetas de Estadísticas Individuales
+  Define el fondo con degradado, padding, bordes redondeados, alineación de texto,
+  transiciones, bordes y un borde superior con degradado.
+*/
 .stat-card {
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  background: linear-gradient(135deg, #ffffff, #f8f9fa); /* Degradado blanco-gris claro */
   padding: 1.5rem;
   border-radius: 12px;
   text-align: center;
@@ -411,11 +477,11 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Borde superior con degradado */
 }
 
 .stat-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px); /* Ligera elevación al pasar el ratón */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -430,7 +496,7 @@
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Degradado azul-púrpura */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -445,7 +511,10 @@
   margin: 0;
 }
 
-/* ===== ESTADOS VACÍOS ===== */
+/*
+  Estilos para Estados Vacíos (cuando no hay reportes/estadísticas)
+  Define la alineación de texto, padding y color de texto.
+*/
 .empty-state {
   text-align: center;
   padding: 3rem 2rem;
@@ -462,7 +531,10 @@
   opacity: 0.8;
 }
 
-/* ===== SPINNER DE CARGA ===== */
+/*
+  Estilos para el Contenedor de Carga (Loading Spinner)
+  Centra el contenido y define el espaciado.
+*/
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -472,15 +544,20 @@
   gap: 1rem;
 }
 
+/*
+  Estilos para el Spinner de Carga
+  Define el tamaño, bordes, forma circular y animación de giro.
+*/
 .spinner {
   width: 40px;
   height: 40px;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
+  border-top: 4px solid #667eea; /* Color azul-púrpura para el borde superior */
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite; /* Animación de giro */
 }
 
+/* Animación de giro para el spinner */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -490,12 +567,15 @@
   }
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+/*
+  Media Queries para Diseño Responsivo
+  Ajusta el diseño en diferentes tamaños de pantalla.
+*/
 
 /* Tablets grandes (1024px - 1200px) */
 @media (max-width: 1200px) {
   .reportes-main-layout {
-    grid-template-columns: 1fr 1fr; /* Adjust to 1fr 1fr for slightly smaller screens */
+    grid-template-columns: 1fr 1fr; /* Ajusta a dos columnas iguales */
     gap: 1.5rem;
   }
 
@@ -507,7 +587,7 @@
 /* Tablets (768px - 1024px) */
 @media (max-width: 1024px) {
   .reportes-main-layout {
-    grid-template-columns: 1fr; /* Stack columns vertically */
+    grid-template-columns: 1fr; /* Apila las columnas verticalmente */
     gap: 2rem;
   }
 
@@ -540,29 +620,29 @@
   }
 
   .filtros-form {
-    gap: 1rem; /* Reduce gap in form */
+    gap: 1rem; /* Reduce el espacio en el formulario */
   }
 
   .form-row {
-    grid-template-columns: 1fr; /* Single column for form inputs */
+    grid-template-columns: 1fr; /* Una sola columna para los inputs del formulario */
   }
 
   .reporte-header {
-    flex-direction: column;
+    flex-direction: column; /* Apila el encabezado del reporte */
     gap: 1rem;
     align-items: stretch;
   }
 
   .reporte-meta {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna para la meta del reporte */
   }
 
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr); /* Keep 2 columns for stats if possible */
+    grid-template-columns: repeat(2, 1fr); /* Mantiene 2 columnas para las estadísticas si es posible */
   }
 
   .reporte-actions {
-    justify-content: center;
+    justify-content: center; /* Centra los botones de acción */
   }
 }
 
@@ -589,7 +669,7 @@
   }
 
   .stats-grid {
-    grid-template-columns: 1fr; /* Single column for stats on mobile */
+    grid-template-columns: 1fr; /* Una sola columna para las estadísticas en móvil */
   }
 
   .reporte-actions {
@@ -598,7 +678,7 @@
   }
 
   .btn {
-    width: 100%;
+    width: 100%; /* Los botones ocupan todo el ancho */
     justify-content: center;
   }
 }

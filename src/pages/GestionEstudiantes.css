@@ -1,73 +1,99 @@
+/*
+  Estilos Generales para el Contenedor Principal de la Página de Gestión de Estudiantes
+  Define la altura mínima, el fondo con un degradado y el padding general.
+*/
 .gestion-estudiantes-container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
+  min-height: 100vh; /* Asegura que ocupe al menos toda la altura de la ventana */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Fondo con degradado púrpura-azul */
+  padding: 2rem; /* Espaciado interno */
 }
 
+/*
+  Estilos para el Encabezado de la Página
+  Centra el texto, define el color, tamaño de fuente y sombra para el título y subtítulo.
+*/
 .page-header {
   text-align: center;
   margin-bottom: 2rem;
-  color: white;
+  color: white; /* Color de texto blanco */
 }
 
 .page-header h1 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para el texto del título */
 }
 
 .page-header p {
   font-size: 1.1rem;
-  opacity: 0.9;
+  opacity: 0.9; /* Ligera transparencia para el subtítulo */
 }
 
+/*
+  Estilos para la Navegación de Vistas (Botones de "Lista", "Evidencias", "Reportes")
+  Define el diseño flexible, espaciado y centrado de los botones.
+*/
 .vista-navigation {
   display: flex;
-  gap: 1rem;
+  gap: 1rem; /* Espacio entre los botones */
   margin-bottom: 2rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: center; /* Centra los botones horizontalmente */
+  flex-wrap: wrap; /* Permite que los botones se envuelvan en pantallas pequeñas */
 }
 
+/*
+  Estilos para los Botones de Navegación Individuales
+  Define el padding, fondo semitransparente, bordes, color de texto,
+  efectos hover y el filtro de desenfoque (backdrop-filter).
+*/
 .nav-btn {
   padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1); /* Fondo blanco semitransparente */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Borde blanco semitransparente */
   border-radius: 12px;
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  transition: all 0.3s ease; /* Transición suave para todos los cambios */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque detrás del elemento */
 }
 
 .nav-btn:hover {
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
 }
 
 .nav-btn.active {
-  background: rgba(255, 255, 255, 0.9);
-  color: #667eea;
-  border-color: white;
+  background: rgba(255, 255, 255, 0.9); /* Fondo casi opaco para el botón activo */
+  color: #667eea; /* Color de texto azul-púrpura para el botón activo */
+  border-color: white; /* Borde blanco para el botón activo */
 }
 
+/*
+  Estilos para la Sección de Filtros
+  Define el fondo, bordes redondeados, padding, márgenes,
+  filtro de desenfoque y sombra.
+*/
 .filtros-section {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.95); /* Fondo casi opaco */
   border-radius: 16px;
   padding: 1.5rem;
   margin-bottom: 2rem;
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
 }
 
+/*
+  Estilos para la Fila de Filtros (Grid Layout)
+  Define un diseño de cuadrícula para los campos de filtro y el botón.
+*/
 .filtros-row {
   display: grid;
-  grid-template-columns: 1fr 200px;
+  grid-template-columns: 1fr 200px; /* Una columna flexible y una de 200px */
   gap: 1.5rem;
-  align-items: end;
+  align-items: end; /* Alinea los ítems al final de su celda */
 }
 
 .filtro-group {
@@ -81,28 +107,42 @@
   color: #333;
 }
 
+/*
+  Estilos para los Campos de Entrada y Selección de Filtros
+  Define el padding, bordes, tamaño de fuente y transiciones.
+*/
 .filtro-input,
 .filtro-select {
   padding: 0.75rem;
-  border: 2px solid #e1e5e9;
+  border: 2px solid #e1e5e9; /* Borde gris claro */
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
 
+/* Estilos para los campos de filtro al enfocarse */
 .filtro-input:focus,
 .filtro-select:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #667eea; /* Borde azul-púrpura al enfocar */
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); /* Sombra de enfoque */
 }
 
+/*
+  Estilos para la Cuadrícula de Estudiantes
+  Define un diseño de cuadrícula responsivo para las tarjetas de estudiante.
+*/
 .estudiantes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Columnas adaptables */
+  gap: 1.5rem; /* Espacio entre las tarjetas */
 }
 
+/*
+  Estilos para las Tarjetas de Estudiante Individuales
+  Define el fondo, bordes redondeados, padding, filtro de desenfoque,
+  sombra y efectos hover.
+*/
 .estudiante-card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
@@ -110,12 +150,12 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
 }
 
 .estudiante-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px); /* Efecto de elevación al pasar el ratón */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al hover */
 }
 
 .estudiante-header {
@@ -125,11 +165,15 @@
   margin-bottom: 1rem;
 }
 
+/*
+  Estilos para el Avatar del Estudiante
+  Define el tamaño, forma circular, fondo con degradado y estilo de texto.
+*/
 .estudiante-avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Degradado azul-púrpura */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,6 +195,11 @@
   font-size: 0.9rem;
 }
 
+/*
+  Estilos para las Insignias de Estado del Estudiante
+  Define el padding, bordes redondeados, tamaño de fuente y colores específicos
+  para cada estado (activo, retrasado, completado).
+*/
 .estado-badge {
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
@@ -160,18 +209,18 @@
 }
 
 .estado-badge.estado-activo {
-  background: #d4edda;
-  color: #155724;
+  background: #d4edda; /* Verde claro */
+  color: #155724; /* Verde oscuro */
 }
 
 .estado-badge.estado-retrasado {
-  background: #f8d7da;
-  color: #721c24;
+  background: #f8d7da; /* Rojo claro */
+  color: #721c24; /* Rojo oscuro */
 }
 
 .estado-badge.estado-completado {
-  background: #cce5ff;
-  color: #004085;
+  background: #cce5ff; /* Azul claro */
+  color: #004085; /* Azul oscuro */
 }
 
 .estudiante-details {
@@ -190,6 +239,10 @@
   color: #333;
 }
 
+/*
+  Estilos para la Barra de Progreso
+  Define el diseño flexible, el fondo de la barra y el relleno con degradado.
+*/
 .progreso-container {
   display: flex;
   align-items: center;
@@ -201,24 +254,28 @@
 .progreso-bar {
   flex: 1;
   height: 8px;
-  background: #e9ecef;
+  background: #e9ecef; /* Fondo gris claro de la barra */
   border-radius: 4px;
   overflow: hidden;
 }
 
 .progreso-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #667eea, #764ba2); /* Degradado azul-púrpura para el relleno */
+  transition: width 0.3s ease; /* Transición suave para el cambio de ancho */
 }
 
+/*
+  Estilos para las Estadísticas del Estudiante (dentro de la tarjeta)
+  Define un diseño de cuadrícula para mostrar las estadísticas clave.
+*/
 .estudiante-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
   gap: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(102, 126, 234, 0.05); /* Fondo azul muy claro */
   border-radius: 8px;
 }
 
@@ -230,7 +287,7 @@
   display: block;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #667eea;
+  color: #667eea; /* Color azul-púrpura para los números */
 }
 
 .stat-label {
@@ -243,7 +300,7 @@
 .stat-badge {
   display: block;
   font-size: 0.7rem;
-  color: #dc3545;
+  color: #dc3545; /* Color rojo para insignias de estado (ej. pendientes) */
   font-weight: 600;
   margin-top: 0.25rem;
 }
@@ -253,6 +310,10 @@
   gap: 0.5rem;
 }
 
+/*
+  Estilos para Botones Generales
+  Define el padding, bordes, fuente, cursor y transiciones.
+*/
 .btn {
   padding: 0.5rem 1rem;
   border: none;
@@ -272,18 +333,19 @@
   font-size: 0.85rem;
 }
 
+/* Variantes de color para los botones */
 .btn-primary {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Degradado azul-púrpura */
   color: white;
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); /* Sombra al hover */
 }
 
 .btn-secondary {
-  background: #6c757d;
+  background: #6c757d; /* Gris oscuro */
   color: white;
 }
 
@@ -304,7 +366,7 @@
 }
 
 .btn-success {
-  background: #28a745;
+  background: #28a745; /* Verde */
   color: white;
 }
 
@@ -314,7 +376,7 @@
 }
 
 .btn-danger {
-  background: #dc3545;
+  background: #dc3545; /* Rojo */
   color: white;
 }
 
@@ -323,6 +385,11 @@
   transform: translateY(-1px);
 }
 
+/*
+  Estilos para el Encabezado de Vista (dentro de Evidencias/Reportes del estudiante)
+  Define el diseño flexible, padding, fondo, bordes redondeados,
+  filtro de desenfoque y sombra.
+*/
 .vista-header {
   display: flex;
   align-items: center;
@@ -342,13 +409,22 @@
   font-weight: 600;
 }
 
+/*
+  Estilos para las Cuadrículas de Evidencias y Reportes
+  Define un diseño de cuadrícula responsivo para las tarjetas.
+*/
 .evidencias-grid,
 .reportes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Columnas adaptables */
   gap: 1.5rem;
 }
 
+/*
+  Estilos para las Tarjetas de Evidencia y Reporte Individuales
+  Define el fondo, bordes redondeados, padding, filtro de desenfoque,
+  sombra y efectos hover.
+*/
 .evidencia-card,
 .reporte-card {
   background: rgba(255, 255, 255, 0.95);
@@ -379,6 +455,11 @@
   font-size: 1.5rem;
 }
 
+/*
+  Estilos para las Insignias de Estado de Evidencias y Reportes
+  Define el padding, bordes redondeados, tamaño de fuente y colores específicos
+  para cada estado (aprobada, pendiente, rechazada).
+*/
 .evidencia-estado,
 .reporte-estado {
   padding: 0.25rem 0.75rem;
@@ -391,18 +472,18 @@
 .estado-aprobada,
 .estado-completado,
 .estado-aprobado {
-  background: #d4edda;
-  color: #155724;
+  background: #d4edda; /* Verde claro */
+  color: #155724; /* Verde oscuro */
 }
 
 .estado-pendiente {
-  background: #fff3cd;
-  color: #856404;
+  background: #fff3cd; /* Amarillo claro */
+  color: #856404; /* Marrón oscuro */
 }
 
 .estado-rechazada {
-  background: #f8d7da;
-  color: #721c24;
+  background: #f8d7da; /* Rojo claro */
+  color: #721c24; /* Rojo oscuro */
 }
 
 .evidencia-content,
@@ -432,12 +513,16 @@
   margin: 0.25rem 0;
 }
 
+/*
+  Estilos para los Comentarios de Evidencia
+  Define el fondo, padding, bordes redondeados y un borde izquierdo distintivo.
+*/
 .evidencia-comentarios {
   margin-top: 1rem;
   padding: 1rem;
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(102, 126, 234, 0.05); /* Fondo azul muy claro */
   border-radius: 8px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #667eea; /* Borde azul-púrpura */
 }
 
 .evidencia-comentarios strong {
@@ -453,9 +538,13 @@
   line-height: 1.4;
 }
 
+/*
+  Estilos para la Meta Información del Reporte
+  Define un diseño de cuadrícula para mostrar detalles del reporte.
+*/
 .reporte-meta {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
   gap: 0.5rem;
 }
 
@@ -482,9 +571,13 @@
 .reporte-actions {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Permite que los botones se envuelvan */
 }
 
+/*
+  Estilos para el Contenedor de Carga (Loading Container)
+  Centra el contenido y define el color de texto para el estado de carga.
+*/
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -494,16 +587,21 @@
   color: white;
 }
 
+/*
+  Estilos para el Spinner de Carga
+  Define el diseño del spinner y la animación de giro.
+*/
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
+  border: 4px solid rgba(255, 255, 255, 0.3); /* Borde semitransparente */
+  border-top: 4px solid white; /* Borde superior blanco para el efecto de giro */
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite; /* Animación de giro */
   margin-bottom: 1rem;
 }
 
+/* Animación de giro para el spinner */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -513,39 +611,42 @@
   }
 }
 
-/* Responsive Design */
+/*
+  Media Queries para Diseño Responsivo
+  Ajusta el diseño en diferentes tamaños de pantalla (tablets y móviles).
+*/
 @media (max-width: 768px) {
   .gestion-estudiantes-container {
-    padding: 1rem;
+    padding: 1rem; /* Reduce el padding en pantallas más pequeñas */
   }
 
   .page-header h1 {
-    font-size: 2rem;
+    font-size: 2rem; /* Reduce el tamaño del título */
   }
 
   .filtros-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna para los filtros */
     gap: 1rem;
   }
 
   .estudiantes-grid,
   .evidencias-grid,
   .reportes-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna para las tarjetas */
   }
 
   .estudiante-stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna para las estadísticas de estudiante */
     gap: 0.5rem;
   }
 
   .vista-navigation {
-    flex-direction: column;
+    flex-direction: column; /* Apila los botones de navegación */
     align-items: center;
   }
 
   .nav-btn {
-    width: 100%;
+    width: 100%; /* Los botones ocupan todo el ancho disponible */
     max-width: 300px;
   }
 
@@ -556,7 +657,7 @@
   }
 
   .reporte-meta {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una sola columna para la meta del reporte */
   }
 }
 
@@ -564,10 +665,10 @@
   .estudiante-actions,
   .evidencia-actions,
   .reporte-actions {
-    flex-direction: column;
+    flex-direction: column; /* Apila los botones de acción */
   }
 
   .btn {
-    width: 100%;
+    width: 100%; /* Los botones ocupan todo el ancho disponible */
   }
 }
