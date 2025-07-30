@@ -1,7 +1,7 @@
 "use client"
 
-// Context para manejar la autenticación en toda la aplicación
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useState } from "react"
+import { useData } from "./DataContext" // Importa useData para acceder a los datos de estudiantes/coordinadores
 
 // Creamos el contexto de autenticación
 const AuthContext = createContext()
@@ -17,66 +17,60 @@ export const useAuth = () => {
 
 // Proveedor del contexto de autenticación
 export const AuthProvider = ({ children }) => {
-  // Estado para almacenar la información del usuario autenticado
-  const [user, setUser] = useState(null)
-  // Estado para controlar si estamos cargando la información de autenticación
-  const [loading, setLoading] = useState(true)
+  // Obtenemos el estado del usuario y la función para actualizarlo desde DataContext.
+  // DataContext es la fuente de verdad para los datos de la aplicación, incluyendo el usuario logueado.
+  // También obtenemos 'allAppData' para acceder directamente a los arrays de estudiantes y coordinadores.
+  const { user: dataContextUser, setUserData, data: allAppData } = useData()
 
-  // Efecto para verificar si hay un usuario logueado al cargar la app
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user")
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser))
-      } catch (error) {
-        console.error("Error al parsear usuario almacenado:", error)
-        localStorage.removeItem("user")
-      }
-    }
-    setLoading(false)
-  }, [])
+  // Estado local para controlar si el proceso de login/logout está en curso
+  const [loadingAuthProcess, setLoadingAuthProcess] = useState(false)
 
   // Función para iniciar sesión
   const login = async (email, password, userType) => {
-    try {
-      // Simulamos una llamada a la API de autenticación
-      // En un proyecto real, aquí harías una petición HTTP al backend
-      const userData = {
-        id: Date.now(),
-        email,
-        userType, // 'estudiante' o 'coordinador'
-        name: userType === "estudiante" ? "Estudiante Demo" : "Coordinador Demo",
-      }
+    setLoadingAuthProcess(true) // Inicia el estado de carga
+    let foundUser = null
 
-      // Guardamos el usuario en localStorage para persistir la sesión
-      localStorage.setItem("user", JSON.stringify(userData))
-      setUser(userData)
+    if (userType === "estudiante") {
+      // Busca al estudiante en el array 'students' de allAppData
+      foundUser = allAppData.students.find(
+        (s) => s.email === email && s.password === password && s.userType === "estudiante",
+      )
+    } else if (userType === "coordinador") {
+      // Busca al coordinador en el array 'coordinadores' de allAppData
+      foundUser = allAppData.coordinadores.find(
+        (c) => c.email === email && c.password === password && c.userType === "coordinador",
+      )
+    }
 
+    if (foundUser) {
+      // Si se encuentra el usuario, actualiza el estado del usuario en DataContext.
+      // DataContext se encargará de persistir esto en localStorage.
+      setUserData(foundUser)
+      setLoadingAuthProcess(false) // Finaliza el estado de carga
       return { success: true }
-    } catch (error) {
-      console.error("Error en login:", error)
-      return { success: false, error: "Error al iniciar sesión" }
+    } else {
+      setLoadingAuthProcess(false) // Finaliza el estado de carga
+      return { success: false, error: "Credenciales incorrectas o tipo de usuario inválido." }
     }
   }
 
   // Función para cerrar sesión
   const logout = () => {
-    localStorage.removeItem("user")
-    setUser(null)
+    setLoadingAuthProcess(true) // Inicia el estado de carga
+    setUserData(null) // Limpia el usuario en DataContext y localStorage
+    setLoadingAuthProcess(false) // Finaliza el estado de carga
   }
 
-  // Función para verificar si el usuario está autenticado
-  const isAuthenticated = () => {
-    return user !== null
-  }
+  // La autenticación se determina directamente por la presencia del usuario en DataContext
+  const isAuthenticated = !!dataContextUser
 
   // Valores que se proporcionan a través del contexto
   const value = {
-    user,
+    user: dataContextUser, // Exponemos el usuario que viene de DataContext
     login,
     logout,
     isAuthenticated,
-    loading,
+    loading: loadingAuthProcess, // Usamos el estado de carga local para el proceso de autenticación
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
