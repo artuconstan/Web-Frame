@@ -268,7 +268,8 @@ export const DataProvider = ({ children }) => {
   // --- Student Data Management ---
   const obtenerEstudiante = useCallback(
     (email) => {
-      return data.students.find((s) => s.email === email && s.userType === "estudiante")
+      // Si no se encuentra el estudiante, devuelve null explícitamente
+      return data.students.find((s) => s.email === email && s.userType === "estudiante") || null
     },
     [data.students],
   )

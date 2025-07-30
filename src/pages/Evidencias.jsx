@@ -8,29 +8,36 @@ import "./Evidencias.css"
 
 const Evidencias = () => {
   const { user } = useAuth()
-  const { obtenerEstudiante, actualizarEstudiante } = useData() // isLoading from useData is not relevant for this synchronous fetch
-  const [estudiante, setEstudiante] = useState(null) // Initialize with null, not empty string
+  const { obtenerEstudiante, actualizarEstudiante } = useData()
+  const [estudiante, setEstudiante] = useState(null)
   const [newEvidencia, setNewEvidencia] = useState({ nombre: "", tipo: "", archivo: null })
   const [searchTerm, setSearchTerm] = useState("")
-  const [filterStatus, setFilterStatus] = useState("all") // 'all', 'aprobado', 'pendiente', 'rechazado'
-  const fileInputRef = useRef(null) // Referencia para limpiar el input de archivo
+  const [filterStatus, setFilterStatus] = useState("all")
+  const fileInputRef = useRef(null)
 
-  // Añade estos console.log para depurar
-  console.log("Estado actual de user:", user)
-  console.log("Estado actual de estudiante:", estudiante)
+  // Añade estos console.log para depurar el flujo de datos
+  console.log("Evidencias: Componente renderizado.")
+  console.log("Evidencias: user state (desde useAuth):", user)
+  console.log("Evidencias: estudiante state (local):", estudiante)
 
   useEffect(() => {
     const fetchEstudiante = async () => {
       if (user?.email) {
-        console.log("User email disponible:", user.email)
-        const data = obtenerEstudiante(user.email)
-        console.log("Datos de estudiante obtenidos de DataContext:", data)
-        if (data && !data.evidencias) {
-          data.evidencias = []
+        console.log("Evidencias: user.email disponible, intentando obtener estudiante:", user.email)
+        try {
+          const data = obtenerEstudiante(user.email)
+          console.log("Evidencias: Datos de estudiante obtenidos de DataContext:", data)
+          // Asegúrate de que 'evidencias' sea un array, incluso si está vacío
+          if (data && !data.evidencias) {
+            data.evidencias = []
+          }
+          setEstudiante(data)
+        } catch (error) {
+          console.error("Evidencias: Error al obtener estudiante del DataContext:", error)
+          setEstudiante(null) // En caso de error, resetea el estudiante a null
         }
-        setEstudiante(data)
       } else {
-        console.log("User email NO disponible, estudiante se mantiene null.")
+        console.log("Evidencias: user.email NO disponible, reseteando estudiante a null.")
         setEstudiante(null)
       }
     }
@@ -48,17 +55,21 @@ const Evidencias = () => {
       return
     }
     const newEvidenciaData = {
-      id: Date.now().toString(), // ID único
-      nombre: newEvidencia.nombre,
+      id: Date.now().toString(),
+      titulo: newEvidencia.nombre, // Usar 'titulo' en lugar de 'nombre' para consistencia con el modelo de datos
+      descripcion: "Evidencia subida por el estudiante.", // Puedes añadir un campo de descripción en el formulario si lo deseas
       tipo: newEvidencia.tipo,
+      archivo: newEvidencia.archivo.name, // Guardar el nombre del archivo
       fechaSubida: new Date().toLocaleDateString("es-ES"),
-      estado: "pendiente", // Estado inicial
-      url: URL.createObjectURL(newEvidencia.archivo), // Simular URL del archivo
+      estado: "pendiente",
+      url: URL.createObjectURL(newEvidencia.archivo),
       comentarios: "",
     }
+
     // Obtener las evidencias actuales del estudiante y añadir la nueva
     const currentEvidencias = estudiante?.evidencias || []
     const updatedEvidencias = [...currentEvidencias, newEvidenciaData]
+
     try {
       // Actualizar el estudiante en el DataContext
       await actualizarEstudiante(user.email, { evidencias: updatedEvidencias })
@@ -66,23 +77,24 @@ const Evidencias = () => {
       setEstudiante((prev) => ({ ...prev, evidencias: updatedEvidencias }))
       setNewEvidencia({ nombre: "", tipo: "", archivo: null })
       if (fileInputRef.current) {
-        fileInputRef.current.value = "" // Limpiar el input de archivo
+        fileInputRef.current.value = ""
       }
       alert("Evidencia subida exitosamente. Esperando revisión.")
     } catch (error) {
-      console.error("Error al subir evidencia:", error)
+      console.error("Evidencias: Error al subir evidencia:", error)
       alert("Error al subir evidencia. Por favor, inténtalo de nuevo.")
     }
   }
 
   const filteredEvidencias = estudiante?.evidencias?.filter((evidencia) => {
-    const matchesSearch = evidencia.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesSearch = evidencia.titulo.toLowerCase().includes(searchTerm.toLowerCase()) // Usar 'titulo'
     const matchesStatus = filterStatus === "all" || evidencia.estado === filterStatus
     return matchesSearch && matchesStatus
   })
 
   // Show loading spinner if user is not yet loaded or student data is not available
   if (!user || !estudiante) {
+    console.log("Evidencias: Renderizando estado de carga. user:", user, "estudiante:", estudiante)
     return (
       <div
         className="loading-container"
@@ -91,11 +103,21 @@ const Evidencias = () => {
           padding: "50px",
           borderRadius: "10px",
           boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+          // Añadido para asegurar visibilidad del spinner
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "80vh",
+          width: "100%",
+          position: "fixed", // Para que ocupe toda la pantalla si es necesario
+          top: 0,
+          left: 0,
+          zIndex: 9999, // Asegura que esté por encima de todo
         }}
       >
         <div className="spinner"></div>
         <p style={{ color: "#3498db", fontWeight: "bold" }}>Cargando información de evidencias...</p>
-        {/* Añade más información para depurar */}
         {!user && <p style={{ color: "#e74c3c", fontSize: "0.9em" }}>Usuario no autenticado o no cargado.</p>}
         {user && !estudiante && (
           <p style={{ color: "#e74c3c", fontSize: "0.9em" }}>Estudiante no encontrado para el usuario actual.</p>
@@ -103,6 +125,9 @@ const Evidencias = () => {
       </div>
     )
   }
+
+  // Si llegamos aquí, user y estudiante deberían ser válidos.
+  console.log("Evidencias: Renderizando contenido principal. Estudiante final:", estudiante)
 
   return (
     <div className="evidencias-container">
@@ -196,7 +221,7 @@ const Evidencias = () => {
                 <tbody>
                   {filteredEvidencias?.map((evidencia) => (
                     <tr key={evidencia.id}>
-                      <td>{evidencia.nombre}</td>
+                      <td>{evidencia.titulo}</td> {/* Usar 'titulo' */}
                       <td>{evidencia.tipo}</td>
                       <td>{evidencia.fechaSubida}</td>
                       <td>
