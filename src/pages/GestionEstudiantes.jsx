@@ -704,36 +704,7 @@ const GestionEstudiantes = () => {
                     </div>
                   </div>
 
-                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                    <button
-                      style={{
-                        flex: 1,
-                        padding: "8px",
-                        border: "1px solid #ddd",
-                        borderRadius: "4px",
-                        backgroundColor: "white",
-                        cursor: "pointer",
-                        fontSize: "14px",
-                      }}
-                      onClick={() => alert("Funcionalidad 'Ver Reporte' no implementada.")}
-                    >
-                      👁️ Ver
-                    </button>
-                    <button
-                      style={{
-                        flex: 1,
-                        padding: "8px",
-                        border: "none",
-                        borderRadius: "4px",
-                        backgroundColor: "#3498db",
-                        color: "white",
-                        cursor: "pointer",
-                        fontSize: "14px",
-                      }}
-                      onClick={() => alert("Funcionalidad 'Descargar Reporte' no implementada.")}
-                    >
-                      📥 Descargar
-                    </button>
+                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>             
                     {reporte.estado === "pendiente" && (
                       <button
                         style={{
