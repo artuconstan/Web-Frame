@@ -533,38 +533,6 @@ const GestionEstudiantes = () => {
                   </div>
 
                   <div style={{ display: "flex", gap: "5px", flexWrap: "wrap" }}>
-                    <button
-                      style={{
-                        padding: "6px 12px",
-                        border: "1px solid #ddd",
-                        borderRadius: "4px",
-                        backgroundColor: "white",
-                        cursor: "pointer",
-                        fontSize: "12px",
-                      }}
-                      onClick={() => window.open(evidencia.url, "_blank")} // Abre el archivo en una nueva pestaña
-                    >
-                      👁️ Ver
-                    </button>
-                    <a
-                      href={evidencia.url}
-                      download={evidencia.archivo}
-                      style={{
-                        padding: "6px 12px",
-                        border: "1px solid #ddd",
-                        borderRadius: "4px",
-                        backgroundColor: "white",
-                        color: "inherit", // Para que el color del texto no cambie
-                        textDecoration: "none", // Para quitar el subrayado
-                        cursor: "pointer",
-                        fontSize: "12px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      📥 Descargar
-                    </a>
                     {evidencia.estado === "pendiente" && (
                       <>
                         <button
